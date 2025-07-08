@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.beans.Paciente;
 import model.dao.PacienteDAO;
+import model.table.PacienteTableModel;
 
 /**
  *
@@ -440,21 +441,9 @@ private void limparCampos() {
 
 //tabelas
     private void preencherTabelaPacientes() {
-        List<Paciente> lista = controller.listarPacientes();
-
-        DefaultTableModel modelo = (DefaultTableModel) tblPacientes.getModel();
-        modelo.setRowCount(0);
-
-        for (Paciente p : lista) {
-            modelo.addRow(new Object[]{
-                p.getId(),
-                p.getNome(),
-                p.getCpf(),
-                p.getTelefone(),
-                p.getDataNascimento(),
-                p.getAlergia(),
-                p.getSexo()
-            });
-        }
+ List<Paciente> lista = new PacienteDAO().listarTodos();
+    PacienteTableModel modelo = new PacienteTableModel(lista);
+    tblPacientes.setModel(modelo);
+    
     }
 }

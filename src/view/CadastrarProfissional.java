@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.beans.ProfissionalDeSaude;
 import model.dao.ProfissionalDeSaudeDAO;
+import model.table.ProfissionalDeSaudeTableModel;
 
 /**
  *
@@ -457,34 +458,9 @@ private void limparCampos() {
     }
 
     private void carregarTabelaProfissionais() {
-//        DefaultTableModel modelo = (DefaultTableModel) tblProfissional.getModel();
-//        modelo.setRowCount(0);
-//
-//        ProfissionalDeSaudeDAO dao = new ProfissionalDeSaudeDAO();
-//        List<ProfissionalDeSaude> lista = dao.listarTodos();
-//
-//        for (ProfissionalDeSaude p : lista) {
-//            modelo.addRow(new Object[]{
-//                p.getId(),
-//                p.getNome(),
-//                p.getCpf(),
-//                p.getRegistroProfissional()
-//            });
-//        }
-//    }
-        DefaultTableModel modelo = (DefaultTableModel) tblProfissional.getModel();
-        modelo.setRowCount(0);
-
-        List<ProfissionalDeSaude> lista = controller.listarTodos();
-
-        for (ProfissionalDeSaude p : lista) {
-            modelo.addRow(new Object[]{
-                p.getId(),
-                p.getNome(),
-                p.getCpf(),
-                p.getRegistroProfissional()
-            });
-        }
+  List<ProfissionalDeSaude> lista = new ProfissionalDeSaudeDAO().listarTodos();
+    ProfissionalDeSaudeTableModel modelo = new ProfissionalDeSaudeTableModel(lista);
+    tblProfissional.setModel(modelo);
     }
 
 }
