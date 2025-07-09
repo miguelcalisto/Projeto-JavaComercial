@@ -29,7 +29,6 @@ public class AplicacaoVacinaController {
 
     private final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    // Carrega nomes no JComboBox e mantém lista original internamente
     public void carregarPacientes(JComboBox<String> combo) {
         pacientes = pacienteDAO.listarTodos();
         combo.removeAllItems();
@@ -50,7 +49,7 @@ public class AplicacaoVacinaController {
         vacinas = vacinaDAO.listarTodos();
         combo.removeAllItems();
         for (Vacina v : vacinas) {
-            combo.addItem(v.getNome()); // ou getDescricao(), depende de como você quiser mostrar
+            combo.addItem(v.getNome()); 
         }
     }
 

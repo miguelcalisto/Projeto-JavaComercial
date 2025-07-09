@@ -189,8 +189,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this, "Selecione uma aplicação para excluir.");
         return;
     }
-
-    // Confirmação (opcional)
+//confirmar
     int confirmacao = javax.swing.JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir?", "Confirmar exclusão", javax.swing.JOptionPane.YES_NO_OPTION);
     if (confirmacao != javax.swing.JOptionPane.YES_OPTION) {
         return;
@@ -273,20 +272,17 @@ listarAplicacoesNaTabela();
     
     
     private void listarAplicacoesNaTabela() {
-    // Pega todas as aplicações do Controller
 //    List<AplicacaoVacina> lista = controller.listarTodasAplicacoes();
 //
-//    // Cria o TableModel com os dados
 //    AplicacaoVacinaTableModel model = new AplicacaoVacinaTableModel(lista);
 //
-//    // Define o model na JTable
 //    jTable1.setModel(model);
 
  List<AplicacaoVacina> lista = controller.listarTodasAplicacoes();
     AplicacaoVacinaTableModel model = new AplicacaoVacinaTableModel(lista);
     jTable1.setModel(model);
 
-    // Ajuste automático das colunas para melhor visualização
+    // Ajuste automático pego no guj
     jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
 
     // Ajuste individual das larguras das colunas

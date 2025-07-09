@@ -28,6 +28,8 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
         btnCadastrarPaciente = new javax.swing.JButton();
         btnCadastrarProfissional = new javax.swing.JButton();
+        btnCadastroVacina = new javax.swing.JButton();
+        btnAplicacaoVacina = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,25 +47,46 @@ public class InterfacePrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnCadastroVacina.setText("Cadastro Vacina");
+        btnCadastroVacina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroVacinaActionPerformed(evt);
+            }
+        });
+
+        btnAplicacaoVacina.setText("Aplicação Vacina");
+        btnAplicacaoVacina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplicacaoVacinaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(220, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCadastrarProfissional, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                    .addComponent(btnCadastrarPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(184, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(212, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnAplicacaoVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnCadastroVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCadastrarProfissional, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(btnCadastrarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(btnCadastrarProfissional, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(btnCadastroVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(btnAplicacaoVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,6 +104,18 @@ public class InterfacePrincipal extends javax.swing.JFrame {
         CadastroPaciente cadPaciente = new CadastroPaciente();
         cadPaciente.setVisible(true);
     }//GEN-LAST:event_btnCadastrarPacienteActionPerformed
+
+    private void btnCadastroVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroVacinaActionPerformed
+        // TODO add your handling code here:
+        CadastroVacina cadastroVacina = new CadastroVacina();
+        cadastroVacina.setVisible(true);
+    }//GEN-LAST:event_btnCadastroVacinaActionPerformed
+
+    private void btnAplicacaoVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicacaoVacinaActionPerformed
+        // TODO add your handling code here:
+        CadastroAplicacaoVacina cadastroAplicacaoVacina = new CadastroAplicacaoVacina();
+        cadastroAplicacaoVacina.setVisible(true);
+    }//GEN-LAST:event_btnAplicacaoVacinaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,7 +153,9 @@ public class InterfacePrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAplicacaoVacina;
     private javax.swing.JButton btnCadastrarPaciente;
     private javax.swing.JButton btnCadastrarProfissional;
+    private javax.swing.JButton btnCadastroVacina;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,7 +14,7 @@ public class Vacina {
     private String nome;
     private String fabricante;
 
-    // Construtores
+    // Construtor
     public Vacina() {}
 
     public Vacina(int id, String nome, String fabricante) {

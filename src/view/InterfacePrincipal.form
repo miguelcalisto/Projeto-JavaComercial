@@ -23,24 +23,32 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="220" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnCadastrarProfissional" pref="191" max="32767" attributes="0"/>
-                  <Component id="btnCadastrarPaciente" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="212" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btnAplicacaoVacina" min="-2" pref="185" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnCadastroVacina" min="-2" pref="191" max="-2" attributes="0"/>
+                      <Component id="btnCadastrarProfissional" min="-2" pref="191" max="-2" attributes="0"/>
+                      <Component id="btnCadastrarPaciente" min="-2" pref="191" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="184" max="32767" attributes="0"/>
+              <EmptySpace pref="192" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace pref="14" max="32767" attributes="0"/>
               <Component id="btnCadastrarPaciente" min="-2" pref="65" max="-2" attributes="0"/>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
               <Component id="btnCadastrarProfissional" min="-2" pref="65" max="-2" attributes="0"/>
-              <EmptySpace pref="168" max="32767" attributes="0"/>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <Component id="btnCadastroVacina" min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <Component id="btnAplicacaoVacina" min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,6 +68,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarProfissionalActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCadastroVacina">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cadastro Vacina"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastroVacinaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAplicacaoVacina">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aplica&#xe7;&#xe3;o Vacina"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAplicacaoVacinaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -439,7 +439,6 @@ private void limparCampos() {
         txtSexo.setText("");
     }
 
-//tabelas
     private void preencherTabelaPacientes() {
  List<Paciente> lista = new PacienteDAO().listarTodos();
     PacienteTableModel modelo = new PacienteTableModel(lista);
