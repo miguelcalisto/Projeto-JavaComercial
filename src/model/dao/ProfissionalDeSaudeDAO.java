@@ -136,7 +136,7 @@ public class ProfissionalDeSaudeDAO {
 
     } catch (SQLException e) {
 
-        System.err.println("ero ao alterar: "+e.getMessage());
+        System.err.println("erro ao alterar: "+e.getMessage());
     }
     
     

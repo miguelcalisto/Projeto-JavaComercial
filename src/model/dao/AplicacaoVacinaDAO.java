@@ -10,6 +10,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class AplicacaoVacinaDAO {
 
@@ -25,7 +26,8 @@ public class AplicacaoVacinaDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+               JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
+
         }
     }
 
@@ -36,7 +38,8 @@ public class AplicacaoVacinaDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+             JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
+
         }
     }
 
@@ -81,7 +84,8 @@ public class AplicacaoVacinaDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
+
         }
 
         return lista;

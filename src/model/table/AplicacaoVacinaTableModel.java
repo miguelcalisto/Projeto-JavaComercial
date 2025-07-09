@@ -54,4 +54,9 @@ public class AplicacaoVacinaTableModel extends AbstractTableModel {
         this.aplicacoes = aplicacoes;
         fireTableDataChanged();
     }
+
+    public List<AplicacaoVacina> getAplicacoes() {
+    return aplicacoes;
+}
+
 }

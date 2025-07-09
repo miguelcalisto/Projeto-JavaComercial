@@ -48,4 +48,9 @@ public class ProfissionalDeSaude {
     public void setRegistroProfissional(int registroProfissional) {
         this.registroProfissional = registroProfissional;
     }
+    @Override
+public String toString() {
+    return nome;
+}
+
 }

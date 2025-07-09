@@ -14,6 +14,7 @@ import model.beans.Vacina;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class VacinaDAO {
 
@@ -28,7 +29,8 @@ public class VacinaDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+              JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
+
         }
     }
 
@@ -44,7 +46,8 @@ public class VacinaDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+              JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
+
         }
     }
 
@@ -57,7 +60,8 @@ public class VacinaDAO {
             stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+               JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
+
         }
     }
 
@@ -79,7 +83,8 @@ public class VacinaDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+              JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
+
         }
 
         return vacina;
@@ -102,7 +107,8 @@ public class VacinaDAO {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+               JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
+
         }
 
         return vacinas;

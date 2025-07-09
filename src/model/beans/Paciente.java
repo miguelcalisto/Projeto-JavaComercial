@@ -83,6 +83,10 @@ public class Paciente {
     public void setAlergia(String alergia) {
         this.alergia = alergia;
     }
+@Override
+public String toString() {
+    return nome;
+}
 
    
 }

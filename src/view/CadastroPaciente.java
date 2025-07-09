@@ -361,7 +361,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
             txtAlergias.setText(paciente.getAlergia());
             txtSexo.setText(paciente.getSexo());
         } else {
-            JOptionPane.showMessageDialog(this, "Paciente não encontrado.");
+            JOptionPane.showMessageDialog(this, "PacienteCadastroPaciente não encontrado.");
         }
 
 

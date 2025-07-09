@@ -4,6 +4,14 @@
  */
 package view;
 
+import controller.AplicacaoVacinaController;
+import java.util.List;
+import model.beans.AplicacaoVacina;
+import model.beans.Paciente;
+import model.beans.ProfissionalDeSaude;
+import model.beans.Vacina;
+import model.table.AplicacaoVacinaTableModel;
+
 /**
  *
  * @author debian
@@ -13,10 +21,23 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     /**
      * Creates new form CadastroAplicacaoVacina
      */
-    public CadastroAplicacaoVacina() {
-        initComponents();
-    }
+        private final AplicacaoVacinaController controller = new AplicacaoVacinaController();
 
+
+    public CadastroAplicacaoVacina() {
+            
+        
+        initComponents();
+
+        
+        controller.carregarPacientes(cbPaciente);
+    controller.carregarProfissionais(cbProfissional);
+    controller.carregarVacinas(cbVacina);
+        
+        
+
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,21 +47,194 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cbPaciente = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        cbProfissional = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        cbVacina = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jfDataAplicacao = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtLocalAplicacao = new javax.swing.JTextField();
+        btnSalvar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnListarTodos = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("paciente");
+
+        jLabel2.setText("profissional");
+
+        jLabel3.setText("vacina");
+
+        jLabel4.setText("data");
+
+        try {
+            jfDataAplicacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel5.setText("local");
+
+        btnSalvar.setText("salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
+        btnExcluir.setText("excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        btnListarTodos.setText("listar todos");
+        btnListarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarTodosActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "paciente", "profissional", "vacina", "data", "local"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtLocalAplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jfDataAplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbProfissional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSalvar)
+                                .addGap(53, 53, 53)
+                                .addComponent(btnExcluir)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnListarTodos)))
+                        .addGap(0, 464, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbProfissional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbVacina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jfDataAplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtLocalAplicacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnListarTodos))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        int linhaSelecionada = jTable1.getSelectedRow();
+
+    if (linhaSelecionada == -1) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Selecione uma aplicação para excluir.");
+        return;
+    }
+
+    // Confirmação (opcional)
+    int confirmacao = javax.swing.JOptionPane.showConfirmDialog(this, "Tem certeza que deseja excluir?", "Confirmar exclusão", javax.swing.JOptionPane.YES_NO_OPTION);
+    if (confirmacao != javax.swing.JOptionPane.YES_OPTION) {
+        return;
+    }
+
+    // Pega o TableModel atual da tabela
+    AplicacaoVacinaTableModel model = (AplicacaoVacinaTableModel) jTable1.getModel();
+
+    // Pega o objeto AplicacaoVacina da linha selecionada
+    AplicacaoVacina aplicacao = model.getAplicacoes().get(linhaSelecionada);
+
+    // Exclui pelo ID
+    controller.excluirAplicacao(aplicacao.getId());
+
+    // Atualiza a tabela
+    listarAplicacoesNaTabela();
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnListarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTodosActionPerformed
+        // TODO add your handling code here:
+    listarAplicacoesNaTabela();
+
+
+    }//GEN-LAST:event_btnListarTodosActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // TODO add your handling code here:
+int indexPaciente = cbPaciente.getSelectedIndex();
+int indexProfissional = cbProfissional.getSelectedIndex();
+int indexVacina = cbVacina.getSelectedIndex();
+
+Paciente paciente = controller.getPacientes().get(indexPaciente);
+ProfissionalDeSaude profissional = controller.getProfissionais().get(indexProfissional);
+Vacina vacina = controller.getVacinas().get(indexVacina);
+
+String data = jfDataAplicacao.getText();
+String local = txtLocalAplicacao.getText();
+
+controller.salvarAplicacao(data, local, paciente, profissional, vacina);
+listarAplicacoesNaTabela();
+
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,7 +270,53 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    private void listarAplicacoesNaTabela() {
+    // Pega todas as aplicações do Controller
+//    List<AplicacaoVacina> lista = controller.listarTodasAplicacoes();
+//
+//    // Cria o TableModel com os dados
+//    AplicacaoVacinaTableModel model = new AplicacaoVacinaTableModel(lista);
+//
+//    // Define o model na JTable
+//    jTable1.setModel(model);
+
+ List<AplicacaoVacina> lista = controller.listarTodasAplicacoes();
+    AplicacaoVacinaTableModel model = new AplicacaoVacinaTableModel(lista);
+    jTable1.setModel(model);
+
+    // Ajuste automático das colunas para melhor visualização
+    jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+
+    // Ajuste individual das larguras das colunas
+    if (jTable1.getColumnModel().getColumnCount() >= 6) {
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);  // ID
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(120); // Paciente
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(120); // Profissional
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(120); // Vacina
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(80);  // Data
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(100); // Local
+    }
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnListarTodos;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox<String> cbPaciente;
+    private javax.swing.JComboBox<String> cbProfissional;
+    private javax.swing.JComboBox<String> cbVacina;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JFormattedTextField jfDataAplicacao;
+    private javax.swing.JTextField txtLocalAplicacao;
     // End of variables declaration//GEN-END:variables
 }
+

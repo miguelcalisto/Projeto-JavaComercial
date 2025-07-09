@@ -47,4 +47,9 @@ public class Vacina {
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
     }
+    @Override
+public String toString() {
+    return nome;
+}
+
 }
