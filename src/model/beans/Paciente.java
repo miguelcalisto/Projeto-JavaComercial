@@ -1,32 +1,16 @@
-package model.beans;
 
+package model.bean;
 
 public class Paciente {
-    private int id;
-    private String nome;
-    private String cpf;
-    private String telefone;
-    private String dataNascimento; 
-    private String alergia;       
-    private String sexo;
-
-   
-
-    public Paciente(int id, String nome, String cpf, String telefone, String dataNascimento, String alergia, String sexo) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.dataNascimento = dataNascimento;
-        this.alergia = alergia;
-        this.sexo = sexo;
-    }
-
-    public Paciente() {
-       
-    }
-
-    // Getters e Setters
+    int id;
+    String telefone;
+    String dataNascimento;
+    String alergias;
+    String sexo;
+    String cpf;
+    String nome;
+    
+    public Paciente(){}
 
     public int getId() {
         return id;
@@ -36,30 +20,6 @@ public class Paciente {
         this.id = id;
     }
     
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getTelefone() {
         return telefone;
     }
@@ -76,17 +36,35 @@ public class Paciente {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getAlergia() {
-        return alergia;
+    public String getAlergias() {
+        return alergias;
     }
 
-    public void setAlergia(String alergia) {
-        this.alergia = alergia;
+    public void setAlergias(String alergias) {
+        this.alergias = alergias;
     }
-@Override
-public String toString() {
-    return nome;
-}
 
-   
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

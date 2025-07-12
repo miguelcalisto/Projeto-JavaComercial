@@ -1,68 +1,58 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controller;
 
-/**
- *
- * @author debian
- */
-import java.util.List;
-import javax.swing.JOptionPane;
-import model.beans.Paciente;
+import java.util.ArrayList;
+import model.bean.Paciente;
 import model.dao.PacienteDAO;
-
 
 public class PacienteController {
     
-    private PacienteDAO pacienteDAO;
-
-    public PacienteController() {
-        this.pacienteDAO = new PacienteDAO();
+    public boolean create(String telefone, String dataNascimento, String alergias, String sexo, String cpf, String nome){
+        Paciente paciente = new Paciente();
+        paciente.setTelefone(telefone);
+        paciente.setDataNascimento(dataNascimento);
+        paciente.setAlergias(alergias);
+        paciente.setSexo(sexo);
+        paciente.setCpf(cpf);
+        paciente.setNome(nome);
+        
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        return pacienteDAO.create(paciente);
     }
-
-    public void cadastrarPaciente(Paciente paciente) {
-        if (validarPaciente(paciente)) {
-            pacienteDAO.inserir(paciente);
-        } else {
-            System.out.println("Dados do paciente inválidos!");
-        }
+    
+    public ArrayList<Paciente> read(){
+        PacienteDAO pacientedao = new PacienteDAO();
+        return pacientedao.read();
     }
-
-    public void atualizarPaciente(Paciente paciente) {
-        if (validarPaciente(paciente)) {
-            pacienteDAO.alterarPorId(paciente);
-        } else {
-            System.out.println("Dados do paciente inválidos para atualização!");
-        }
+    
+    public ArrayList<Paciente> getPacientesNome(String nome){
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        return pacienteDAO.getPacientesNome(nome);
     }
-
-    public void excluirPacientePorId(int id) {
-        pacienteDAO.excluirPorId(id);
+    
+    public ArrayList<Paciente> getPacientesCpf(String cpf){
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        return pacienteDAO.getPacientesCpf(cpf);
     }
-
-    public Paciente buscarPacientePorId(int id) {
-        return pacienteDAO.buscarPorId(id);
+    
+    public boolean update(int id, String telefone, String dataNascimento, String alergias, String sexo, String cpf, String nome){
+        Paciente paciente = new Paciente();
+        paciente.setId(id);
+        paciente.setDataNascimento(dataNascimento);
+        paciente.setAlergias(alergias);
+        paciente.setSexo(sexo);
+        paciente.setCpf(cpf);
+        paciente.setNome(nome);
+        
+        PacienteDAO pacienteDAO = new PacienteDAO();
+        return pacienteDAO.update(paciente);
     }
-
-    public List<Paciente> listarPacientes() {
-        return pacienteDAO.listarTodos();
-    }
-
-    private boolean validarPaciente(Paciente paciente) {
-//        return paciente.getNome() != null && !paciente.getNome().isEmpty()
-//            && paciente.getCpf() != null && paciente.getCpf().isEmpty()
-//            && paciente.getTelefone() != null && !paciente.getTelefone().isEmpty()
-//            && paciente.getDataNascimento() != null
-//            && paciente.getSexo() != null && !paciente.getSexo().isEmpty();
-return paciente.getNome() != null && !paciente.getNome().isEmpty()
-        && paciente.getCpf() != null && !paciente.getCpf().isEmpty()
-        && paciente.getTelefone() != null && !paciente.getTelefone().isEmpty()
-        && paciente.getDataNascimento() != null
-        && paciente.getSexo() != null && !paciente.getSexo().isEmpty();
+    
+    public boolean delete(int id){
+        Paciente paciente = new Paciente();
+        paciente.setId(id);
+        
+        PacienteDAO pacientedao = new PacienteDAO();
+        return pacientedao.delete(paciente);
     }
 }
-    
-    
-

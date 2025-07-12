@@ -1,189 +1,160 @@
+
 package model.dao;
 
 import connection.Conexao;
-import model.beans.Paciente;
-import java.sql.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;  
+import model.bean.Paciente;
 import java.util.ArrayList;
-import java.util.List;
+import javax.swing.JOptionPane;
+import model.beans.Paciente;
 
 public class PacienteDAO {
-
-    // INSERIR 
-    public void inserir(Paciente paciente) {
-        String sql = "INSERT INTO paciente (nome, cpf, telefone, datanascimento, alergia, sexo) VALUES (?, ?, ?, ?, ?, ?)";
-
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, paciente.getNome());
-            stmt.setString(2, paciente.getCpf());
-            stmt.setString(3, paciente.getTelefone());
-   
-            stmt.setDate(4, java.sql.Date.valueOf(paciente.getDataNascimento()));
-
-            stmt.setString(5, paciente.getAlergia());
-            stmt.setString(6, paciente.getSexo());
-       
-
-
+    
+    private Connection con = null;
+    
+    public PacienteDAO(){
+        con = Conexao.getConnection();
+    }
+    
+    public boolean create(Paciente paciente){
+        PreparedStatement stmt = null;
+        try{
+            stmt = con.prepareStatement("INSERT INTO paciente (telefone, data_nascimento, alergias, sexo, cpf, nome) VALUES (?, ?, ?, ?, ?, ?)");
+            stmt.setString(1, paciente.getTelefone());
+            stmt.setString(2, paciente.getDataNascimento());
+            stmt.setString(3, paciente.getAlergias());
+            stmt.setString(4, paciente.getSexo());
+            stmt.setString(5, paciente.getCpf());
+            stmt.setString(6, paciente.getNome());
             stmt.executeUpdate();
-            System.out.println("Paciente cadastrado com sucesso!");
-        } catch (SQLException e) {
-            System.err.println("Erro ao inserir paciente: " + e.getMessage());
+            return true;
+            
+        } catch(SQLException ex){
+            System.err.println("Erro ao salvar: " + ex);
+            return false;
+        } finally{
+            Conexao.closeConnection(con, stmt);
         }
     }
-
-    // LISTAR TODOS 
-    public List<Paciente> listarTodos() {
-        List<Paciente> lista = new ArrayList<>();
-        String sql = "SELECT * FROM paciente";
-
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Paciente p = new Paciente();
-                p.setId(rs.getInt("idpaciente"));
-                p.setNome(rs.getString("nome"));
-                p.setCpf(rs.getString("cpf"));
-                p.setTelefone(rs.getString("telefone"));
-                p.setDataNascimento(rs.getString("datanascimento"));
-                p.setAlergia(rs.getString("alergia"));
-                p.setSexo(rs.getString("sexo"));
-                
-
-                lista.add(p);
+    
+    public ArrayList<Paciente> read() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Paciente> listaPacientes = new ArrayList<>();
+        try{
+            stmt = con.prepareStatement("SELECT * FROM paciente ORDER by id");
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                Paciente paciente = new Paciente();
+                paciente.setId(rs.getInt("id"));
+                paciente.setCpf(rs.getString("cpf"));
+                paciente.setAlergias(rs.getString("alergias"));
+                paciente.setDataNascimento(rs.getString("data_nascimento"));
+                paciente.setNome(rs.getString("nome"));
+                paciente.setSexo(rs.getString("sexo"));
+                paciente.setTelefone(rs.getString("telefone"));
+                listaPacientes.add(paciente);
             }
-
-        } catch (SQLException e) {
-            System.out.println("Erro ao listar pacientes: " + e.getMessage());
+        } catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao ler os Pacientes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally{
+            Conexao.closeConnection(con, stmt, rs);
         }
-        return lista;
+        return listaPacientes;
+    }
+    
+        public ArrayList<Paciente> getPacientesNome(String nome) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Paciente> listaPacientes = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM paciente WHERE nome ILIKE ? ORDER by id");
+            stmt.setString(1, "%" + nome + "%");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setId(rs.getInt("id"));
+                paciente.setCpf(rs.getString("cpf"));
+                paciente.setAlergias(rs.getString("alergias"));
+                paciente.setDataNascimento(rs.getString("data_nascimento"));
+                paciente.setNome(rs.getString("nome"));
+                paciente.setSexo(rs.getString("sexo"));
+                paciente.setTelefone(rs.getString("telefone"));
+                listaPacientes.add(paciente);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler os Pacientes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        return listaPacientes;
     }
 
-    // ATUALIZAR 
-    public void alterar(Paciente paciente) {
-        String sql = "UPDATE paciente SET nome=?, telefone=?, datanascimento=?, alergia=?, sexo=? WHERE cpf=?";
+    public ArrayList<Paciente> getPacientesCpf(String cpf) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Paciente> listaPacientes = new ArrayList<>();
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, paciente.getNome());
-            stmt.setString(2, paciente.getTelefone());
-            
-            
- // DATA 
- 
-
-DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-LocalDate data = LocalDate.parse(paciente.getDataNascimento(), formatter);
-stmt.setDate(3, java.sql.Date.valueOf(data));
-
-
-
-///
-            stmt.setString(4, paciente.getAlergia());
-            stmt.setString(5, paciente.getSexo()); 
-
-            stmt.setString(6, paciente.getCpf());
-
+        try {
+            stmt = con.prepareStatement("SELECT * FROM paciente WHERE cpf ILIKE ? ORDER by id");
+            stmt.setString(1, "%" + cpf + "%");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setId(rs.getInt("id"));
+                paciente.setCpf(rs.getString("cpf"));
+                paciente.setAlergias(rs.getString("alergias"));
+                paciente.setDataNascimento(rs.getString("data_nascimento"));
+                paciente.setNome(rs.getString("nome"));
+                paciente.setSexo(rs.getString("sexo"));
+                paciente.setTelefone(rs.getString("telefone"));
+                listaPacientes.add(paciente);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler os Pacientes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        return listaPacientes;
+    }
+    
+    public boolean update(Paciente paciente){
+        PreparedStatement stmt = null;
+        try{
+            stmt = con.prepareStatement("UPDATE paciente set cpf = ?, alergias = ?, data_nascimento = ?, nome = ?, sexo = ?, telefone = ? WHERE id = ?");
+            stmt.setString(1, paciente.getCpf());
+            stmt.setString(2, paciente.getAlergias());
+            stmt.setString(3, paciente.getDataNascimento());
+            stmt.setString(4, paciente.getNome());
+            stmt.setString(5, paciente.getSexo());
+            stmt.setString(6, paciente.getTelefone());
+            stmt.setInt(7, paciente.getId());
             stmt.executeUpdate();
-            System.out.println("Paciente alterado com sucesso!");
-        } catch (SQLException e) {
-            System.out.println("Erro ao alterar paciente: " + e.getMessage());
+            return true;
+        } catch(SQLException ex){
+            System.err.println("Erro ao atualizar: " + ex);
+            return false;
+        } finally{
+            Conexao.closeConnection(con, stmt);
         }
     }
-
-    // EXCLUIR 
-    public void excluir(String cpf) {
-        String sql = "DELETE FROM paciente WHERE cpf = ?";
-
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, cpf);
+    
+    public boolean delete(Paciente paciente){
+        PreparedStatement stmt = null;
+        try{
+            stmt = con.prepareStatement("DELETE FROM paciente WHERE id = ?");
+            stmt.setInt(1, paciente.getId());
             stmt.executeUpdate();
-            System.out.println("Paciente excluído com sucesso!");
-        } catch (SQLException e) {
-            System.out.println("Erro ao excluir paciente: " + e.getMessage());
+            return true;
+        } catch(SQLException ex){
+            System.err.println("Erro ao excluir " + ex);
+            return false;
+        } finally{
+            Conexao.closeConnection(con, stmt);
         }
     }
-    
-    
-    public void alterarPorId(Paciente paciente) {
-    String sql = "UPDATE paciente SET nome = ?, cpf = ?, telefone = ?, datanascimento = ?, alergia = ?, sexo = ? WHERE idpaciente = ?";
-
-    try (Connection conn = Conexao.getConnection();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-        stmt.setString(1, paciente.getNome());
-        stmt.setString(2, paciente.getCpf());
-        stmt.setString(3, paciente.getTelefone());
-        
-        /// data
-        stmt.setDate(4, java.sql.Date.valueOf(paciente.getDataNascimento())); 
-        ///
-
-        stmt.setString(5, paciente.getAlergia());
-        stmt.setString(6, paciente.getSexo());
-        stmt.setInt(7, paciente.getId()); 
-
-        stmt.executeUpdate();
-
-    } catch (SQLException e) {
-         System.err.println("erro ao alterar: " + e.getMessage());
-    }
-}
-
-
-    
-    
-    
-    public Paciente buscarPorId(int id) {
-    Paciente paciente = null;
-    String sql = "SELECT * FROM paciente WHERE idpaciente = ?";
-
-    try (Connection conn = Conexao.getConnection();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-        stmt.setInt(1, id);
-        ResultSet rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            paciente = new Paciente();
-            paciente.setId(rs.getInt("idpaciente"));
-            paciente.setNome(rs.getString("nome"));
-            paciente.setCpf(rs.getString("cpf"));
-            paciente.setTelefone(rs.getString("telefone"));
-            paciente.setDataNascimento(rs.getString("datanascimento"));
-            paciente.setAlergia(rs.getString("alergia"));
-            paciente.setSexo(rs.getString("sexo"));
-        }
-
-    } catch (SQLException e) {
-       System.err.println("erro ao busar: " + e.getMessage());
-    }
-
-    return paciente;
-}
-
-   
-
-    public void excluirPorId(int id) {
-    String sql = "DELETE FROM paciente WHERE idpaciente = ?";
-    try (Connection conn = Conexao.getConnection();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
-        
-        stmt.setInt(1, id);
-        stmt.executeUpdate();
-        
-    } catch (SQLException e) {
-        System.err.println("erro ao excluir: " + e.getMessage());
-    }
-}
-
-
 }

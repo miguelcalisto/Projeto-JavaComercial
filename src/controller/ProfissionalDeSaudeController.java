@@ -1,71 +1,57 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
-/**
- *
- * @author debian
- */
-
-import java.util.List;
+import java.util.ArrayList;
 import model.beans.ProfissionalDeSaude;
-import model.dao.ProfissionalDeSaudeDAO;
+import model.dao.ProfissionaDelSaudeDAO;
 
 public class ProfissionalDeSaudeController {
-     private ProfissionalDeSaudeDAO dao = new ProfissionalDeSaudeDAO();
-
-    // CADASTRAR
-    public String cadastrarProfissional(ProfissionalDeSaude profissional) {
-        if (profissional.getNome().isEmpty() || profissional.getCpf().isEmpty()) {
-            return "Nome e CPF são obrigatórios.";
-        }
-
-        try {
-            dao.salvar(profissional);
-            return "Profissional cadastrado com sucesso!";
-        } catch (Exception e) {
-            return "Erro ao cadastrar: " + e.getMessage();
-        }
+    
+    public boolean create(String nome, String cpf, String registroProfissional){
+        ProfissionalDeSaude profissionalDeSaude = new ProfissionalDeSaude();
+        profissionalDeSaude.setNome(nome);
+        profissionalDeSaude.setCpf(cpf);
+        profissionalDeSaude.setRegistroProfissional(registroProfissional);
+        
+        ProfissionaDelSaudeDAO profissionalDeSaudeDAO = new ProfissionaDelSaudeDAO();
+        return profissionalDeSaudeDAO.create(profissionalDeSaude);
     }
-
-    // ALTERAR POR ID
-    public String alterarProfissional(ProfissionalDeSaude profissional) {
-        if (profissional.getId() <= 0) {
-            return "ID inválido.";
-        }
-
-        try {
-            dao.alterarPorId(profissional);
-            return "Profissional alterado com sucesso!";
-        } catch (Exception e) {
-            return "Erro ao alterar: " + e.getMessage();
-        }
+    
+    public ArrayList<ProfissionalDeSaude> read(){
+        ProfissionaDelSaudeDAO profissionalDeSaudeDAO = new ProfissionaDelSaudeDAO();
+        return profissionalDeSaudeDAO.read();
     }
-
-    // EXCLUIR POR ID
-    public String excluirProfissional(int id) {
-        if (id <= 0) {
-            return "ID inválido.";
-        }
-
-        try {
-            dao.excluirPorId(id);
-            return "Profissional excluído com sucesso!";
-        } catch (Exception e) {
-            return "Erro ao excluir: " + e.getMessage();
-        }
+    
+    public ArrayList<ProfissionalDeSaude> getProfissionalNome(String nome){
+        ProfissionaDelSaudeDAO profissionalDeSaudeDAO = new ProfissionaDelSaudeDAO();
+        return profissionalDeSaudeDAO.getProfissionalNome(nome);
     }
-
-    // BUSCAR POR ID
-    public ProfissionalDeSaude buscarPorId(int id) {
-        return dao.buscarPorId(id);
+    
+    public ArrayList<ProfissionalDeSaude> getProfissionalCpf(String cpf){
+        ProfissionaDelSaudeDAO profissionalDeSaudeDAO = new ProfissionaDelSaudeDAO();
+        return profissionalDeSaudeDAO.getProfissionalCpf(cpf);
     }
-
-    // LISTAR TODOS
-    public List<ProfissionalDeSaude> listarTodos() {
-        return dao.listarTodos();
+    
+    public ArrayList<ProfissionalDeSaude> getProfissionalRegistro(String registro){
+        ProfissionaDelSaudeDAO profissionalDeSaudeDAO = new ProfissionaDelSaudeDAO();
+        return profissionalDeSaudeDAO.getProfissionalRegistro(registro);
     }
-
+    
+    public boolean update(int id, String cpf, String registroProfissional, String nome){
+        ProfissionalDeSaude profissionalDeSaude = new ProfissionalDeSaude();
+        profissionalDeSaude.setId(id);
+        profissionalDeSaude.setCpf(cpf);
+        profissionalDeSaude.setRegistroProfissional(registroProfissional);
+        profissionalDeSaude.setNome(nome);
+        
+        ProfissionaDelSaudeDAO profissionalDeSaudeDAO = new ProfissionaDelSaudeDAO();
+        return profissionalDeSaudeDAO.update(profissionalDeSaude);
+    }
+    
+    public boolean delete(int id){
+        ProfissionalDeSaude profissionalDeSaude = new ProfissionalDeSaude();
+        profissionalDeSaude.setId(id);
+        
+        ProfissionaDelSaudeDAO profissionalDeSaudeDAO = new ProfissionaDelSaudeDAO();
+        return profissionalDeSaudeDAO.delete(profissionalDeSaude);
+    }
 }

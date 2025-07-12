@@ -1,29 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package model.beans;
-
-/**
- *
- * @author debian
- */
+package model.bean;
 
 public class Vacina {
-    private int id;
-    private String nome;
-    private String fabricante;
+    
+    int id;
+    String nome;
+    String fabricante;
+    int dosesNecessarias;
 
-    // Construtor
-    public Vacina() {}
+    public Vacina(){}
 
-    public Vacina(int id, String nome, String fabricante) {
-        this.id = id;
-        this.nome = nome;
-        this.fabricante = fabricante;
-    }
-
-    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -47,9 +32,18 @@ public class Vacina {
     public void setFabricante(String fabricante) {
         this.fabricante = fabricante;
     }
-    @Override
-public String toString() {
-    return nome;
-}
 
+    public int getDosesNecessarias() {
+        return dosesNecessarias;
+    }
+
+    public void setDosesNecessarias(int dosesNecessarias) {
+        this.dosesNecessarias = dosesNecessarias;
+    }
+    
+    @Override
+    public String toString(){
+        return nome;
+    }
+    
 }

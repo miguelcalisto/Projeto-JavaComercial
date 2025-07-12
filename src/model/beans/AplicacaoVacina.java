@@ -1,27 +1,15 @@
-package model.beans;
-
-import java.time.LocalDate;
+package model.bean;
 
 public class AplicacaoVacina {
-
-    private int id;
-    private Paciente paciente;
-    private ProfissionalDeSaude profissional;
-    private Vacina vacina;
-    private LocalDate dataAplicacao;
-    private String localAplicacao;
-
-    public AplicacaoVacina() {
-    }
-
-    public AplicacaoVacina(int id, Paciente paciente, ProfissionalDeSaude profissional, Vacina vacina, LocalDate dataAplicacao, String localAplicacao) {
-        this.id = id;
-        this.paciente = paciente;
-        this.profissional = profissional;
-        this.vacina = vacina;
-        this.dataAplicacao = dataAplicacao;
-        this.localAplicacao = localAplicacao;
-    }
+    
+    int id;
+    Paciente paciente;
+    ProfissionalSaude responsavel;
+    Vacina vacina;
+    String dataAplicacao;
+    String localAplicacao;
+    
+    public AplicacaoVacina(){}
 
     public int getId() {
         return id;
@@ -39,12 +27,12 @@ public class AplicacaoVacina {
         this.paciente = paciente;
     }
 
-    public ProfissionalDeSaude getProfissional() {
-        return profissional;
+    public ProfissionalSaude getResponsavel() {
+        return responsavel;
     }
 
-    public void setProfissional(ProfissionalDeSaude profissional) {
-        this.profissional = profissional;
+    public void setResponsavel(ProfissionalSaude responsavel) {
+        this.responsavel = responsavel;
     }
 
     public Vacina getVacina() {
@@ -55,11 +43,11 @@ public class AplicacaoVacina {
         this.vacina = vacina;
     }
 
-    public LocalDate getDataAplicacao() {
+    public String getDataAplicacao() {
         return dataAplicacao;
     }
 
-    public void setDataAplicacao(LocalDate dataAplicacao) {
+    public void setDataAplicacao(String dataAplicacao) {
         this.dataAplicacao = dataAplicacao;
     }
 
@@ -70,4 +58,5 @@ public class AplicacaoVacina {
     public void setLocalAplicacao(String localAplicacao) {
         this.localAplicacao = localAplicacao;
     }
+    
 }

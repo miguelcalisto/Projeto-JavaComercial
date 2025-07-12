@@ -1,58 +1,64 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package model.table;
+package tablemodel;
 
-/**
- *
- * @author debian
- */
-
-import model.beans.Paciente;
 import java.util.List;
+import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
+import model.bean.Paciente;
 
 public class PacienteTableModel extends AbstractTableModel {
-
-    private final String[] colunas = {"ID", "Nome", "CPF", "Telefone", "Data de Nascimento", "Alergia", "Sexo"};
-    private final List<Paciente> pacientes;
-
-    public PacienteTableModel(List<Paciente> pacientes) {
-        this.pacientes = pacientes;
+    
+    private List<Paciente> listaPacientes;
+    private String[] colunas = {"Nome", "CPF", "Telefone", "Data Nascimento", "Sexo", "Alergias"};
+    
+    public PacienteTableModel(){   
+        listaPacientes = new ArrayList<>();
     }
-
-    @Override
-    public int getRowCount() {
-        return pacientes.size();
+    
+    public PacienteTableModel(List<Paciente> pacientes){
+        this();
+        this.listaPacientes.addAll(pacientes);
     }
-
+    
     @Override
-    public int getColumnCount() {
+    public int getRowCount(){
+        return listaPacientes.size();
+    }
+    
+    @Override
+    public int getColumnCount(){
         return colunas.length;
     }
-
+    
     @Override
-    public String getColumnName(int coluna) {
-        return colunas[coluna];
+    public Object getValueAt(int linha, int coluna){
+        Paciente paciente = listaPacientes.get(linha);
+        switch(coluna){
+            case 0:
+                return paciente.getNome();
+            case 1:
+                return paciente.getCpf();
+            case 2:
+                return paciente.getTelefone();
+            case 3:
+                return paciente.getDataNascimento();
+            case 4:
+                return paciente.getSexo();
+            case 5:
+                return paciente.getAlergias();
+            default:
+                return "";
+        }
     }
-
+    
     @Override
-    public Object getValueAt(int linha, int coluna) {
-        Paciente p = pacientes.get(linha);
-        return switch (coluna) {
-            case 0 -> p.getId();
-            case 1 -> p.getNome();
-            case 2 -> p.getCpf();
-            case 3 -> p.getTelefone();
-            case 4 -> p.getDataNascimento();
-            case 5 -> p.getAlergia();
-            case 6 -> p.getSexo();
-            default -> null;
-        };
+    public String getColumnName(int column){
+        return colunas[column];
     }
-
-    public Paciente getPaciente(int linha) {
-        return pacientes.get(linha);
+    
+    public Paciente getPaciente(int linha){
+        if (linha >= listaPacientes.size()){
+            return null;
+        }
+        return listaPacientes.get(linha);
     }
 }

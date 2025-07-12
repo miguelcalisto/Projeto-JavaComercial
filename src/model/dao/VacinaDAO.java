@@ -1,116 +1,172 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.dao;
 
-/**
- *
- * @author debian
- */
-
 import connection.Conexao;
-import model.beans.Vacina;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
+import model.beans.Vacina;
+import model.beans.Vacina;
 
 public class VacinaDAO {
 
-    public void salvar(Vacina vacina) {
-        String sql = "INSERT INTO vacina (nome, fabricante) VALUES (?, ?)";
+    private Connection con = null;
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+    public VacinaDAO() {
+        con = Conexao.getConnection();
+    }
 
+    public boolean create(Vacina vacina) {
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("INSERT INTO vacina (nome, fabricante, doses_necessarias) VALUES (?, ?, ?)");
             stmt.setString(1, vacina.getNome());
             stmt.setString(2, vacina.getFabricante());
-
+            stmt.setInt(3, vacina.getDosesNecessarias());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-              JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
-
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro ao salvar: " + ex);
+            return false;
+        } finally {
+            Conexao.closeConnection(con, stmt);
         }
     }
 
-    public void alterarPorId(Vacina vacina) {
-        String sql = "UPDATE vacina SET nome = ?, fabricante = ? WHERE idvacina = ?";
+    public ArrayList<Vacina> read() {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Vacina> ListaVacinas = new ArrayList<>();
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setString(1, vacina.getNome());
-            stmt.setString(2, vacina.getFabricante());
-            stmt.setInt(3, vacina.getId());
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-              JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
-
-        }
-    }
-
-    public void excluirPorId(int id) {
-        String sql = "DELETE FROM vacina WHERE idvacina = ?";
-
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-               JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
-
-        }
-    }
-
-    public Vacina buscarPorId(int id) {
-        String sql = "SELECT * FROM vacina WHERE idvacina = ?";
-        Vacina vacina = null;
-
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                vacina = new Vacina();
-                vacina.setId(rs.getInt("idvacina"));
-                vacina.setNome(rs.getString("nome"));
-                vacina.setFabricante(rs.getString("fabricante"));
-            }
-
-        } catch (SQLException e) {
-              JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
-
-        }
-
-        return vacina;
-    }
-
-    public List<Vacina> listarTodos() {
-        String sql = "SELECT * FROM vacina ORDER BY idvacina";
-        List<Vacina> vacinas = new ArrayList<>();
-
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
+        try {
+            stmt = con.prepareStatement("SELECT * FROM vacina ORDER by id");
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 Vacina vacina = new Vacina();
-                vacina.setId(rs.getInt("idvacina"));
+                vacina.setId(rs.getInt("id"));
                 vacina.setNome(rs.getString("nome"));
                 vacina.setFabricante(rs.getString("fabricante"));
-                vacinas.add(vacina);
+                vacina.setDosesNecessarias(rs.getInt("doses_necessarias"));
+                ListaVacinas.add(vacina);
             }
-
-        } catch (SQLException e) {
-               JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
-
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler as Vacinas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            Conexao.closeConnection(con, stmt, rs);
         }
+        return ListaVacinas;
+    }
 
-        return vacinas;
+    public ArrayList<Vacina> getVacinasNome(String nome) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Vacina> listaVacinas = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM vacina WHERE nome ILIKE ? ORDER by id");
+            stmt.setString(1, "%" + nome + "%");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Vacina vacina = new Vacina();
+                vacina.setId(rs.getInt("id"));
+                vacina.setNome(rs.getString("nome"));
+                vacina.setFabricante(rs.getString("fabricante"));
+                vacina.setDosesNecessarias(rs.getInt("doses_necessarias"));
+                listaVacinas.add(vacina);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler as Vacinas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        return listaVacinas;
+    }
+
+    public ArrayList<Vacina> getVacinasFabricante(String fabricante) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Vacina> listaVacinas = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM vacina WHERE fabricante ILIKE ? ORDER by id");
+            stmt.setString(1, "%" + fabricante + "%");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Vacina vacina = new Vacina();
+                vacina.setId(rs.getInt("id"));
+                vacina.setNome(rs.getString("nome"));
+                vacina.setFabricante(rs.getString("fabricante"));
+                vacina.setDosesNecessarias(rs.getInt("doses_necessarias"));
+                listaVacinas.add(vacina);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler as Vacinas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        return listaVacinas;
+    }
+
+    public ArrayList<Vacina> getVacinasDoses(int doses) {
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Vacina> listaVacinas = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM vacina WHERE doses_necessarias = ? ORDER by id");
+            stmt.setInt(1, doses);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Vacina vacina = new Vacina();
+                vacina.setId(rs.getInt("id"));
+                vacina.setNome(rs.getString("nome"));
+                vacina.setFabricante(rs.getString("fabricante"));
+                vacina.setDosesNecessarias(rs.getInt("doses_necessarias"));
+                listaVacinas.add(vacina);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler as Vacinas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            Conexao.closeConnection(con, stmt, rs);
+        }
+        return listaVacinas;
+    }
+
+    public boolean update(Vacina vacina) {
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE vacina set nome = ?, fabricante = ?, doses_necessarias = ? WHERE id = ?");
+            stmt.setString(1, vacina.getNome());
+            stmt.setString(2, vacina.getFabricante());
+            stmt.setInt(3, vacina.getDosesNecessarias());
+            stmt.setInt(4, vacina.getId());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro ao atualizar: " + ex);
+            return false;
+        } finally {
+            Conexao.closeConnection(con, stmt);
+        }
+    }
+
+    public boolean delete(Vacina vacina) {
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("DELETE FROM vacina WHERE id = ?");
+            stmt.setInt(1, vacina.getId());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println("Erro ao excluir: " + ex);
+            return false;
+        } finally {
+            Conexao.closeConnection(con, stmt);
+        }
     }
 }

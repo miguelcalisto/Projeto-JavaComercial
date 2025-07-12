@@ -1,93 +1,124 @@
 package model.dao;
 
 import connection.Conexao;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet; 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import model.beans.AplicacaoVacina;
 import model.beans.Paciente;
 import model.beans.ProfissionalDeSaude;
 import model.beans.Vacina;
-
-import java.sql.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.JOptionPane;
+import model.beans.AplicacaoVacina;
 
 public class AplicacaoVacinaDAO {
-
-    public void salvar(AplicacaoVacina aplicacao) {
-        String sql = "INSERT INTO aplicacaovacina (idpaciente, idprofissionaldesaude, idvacina, dataaplicacao, localaplicacao) VALUES (?, ?, ?, ?, ?)";
-
-        try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, aplicacao.getPaciente().getId());
-            stmt.setInt(2, aplicacao.getProfissional().getId());
-            stmt.setInt(3, aplicacao.getVacina().getId());
-            stmt.setDate(4, Date.valueOf(aplicacao.getDataAplicacao()));
-            stmt.setString(5, aplicacao.getLocalAplicacao());
-
+    
+    private Connection con = null;
+    
+    public AplicacaoVacinaDAO(){
+        con = Conexao.getConnection();
+    }
+    
+    public boolean create(AplicacaoVacina aplicacaoVacina){
+        PreparedStatement stmt = null;
+        
+        try{
+            stmt = con.prepareStatement("INSERT INTO aplicacao_vacina (data_aplicacao, local_aplicacao, paciente_id, profissional_saude_id, vacina_id) VALUES (?, ?, ?, ?, ?)");
+            stmt.setString(1, aplicacaoVacina.getDataAplicacao());
+            stmt.setString(2, aplicacaoVacina.getLocalAplicacao());
+            stmt.setInt(3, aplicacaoVacina.getPaciente().getId());
+            stmt.setInt(4, aplicacaoVacina.getResponsavel().getId());
+            stmt.setInt(5, aplicacaoVacina.getVacina().getId());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-               JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
-
+            return true;
+        } catch(SQLException ex){
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            Conexao.closeConnection(con, stmt);
         }
     }
-
-    public void excluirPorId(int id) {
-        String sql = "DELETE FROM aplicacaovacina WHERE idaplicacaovacina = ?";
-
-        try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-             JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
-
-        }
-    }
-
-    public List<AplicacaoVacina> listarTodos() {
-        List<AplicacaoVacina> lista = new ArrayList<>();
-        String sql = """
-            SELECT a.idaplicacaovacina, a.dataaplicacao, a.localaplicacao,
-                   p.idpaciente, p.nome AS nomepaciente,
-                   ps.idprofissionaldesaude, ps.nome AS nomeprofissional,
-                   v.idvacina, v.nome AS nomevacina, v.fabricante
-            FROM aplicacaovacina a
-            JOIN paciente p ON a.idpaciente = p.idpaciente
-            JOIN profissionaldesaude ps ON a.idprofissionaldesaude = ps.idprofissionaldesaude
-            JOIN vacina v ON a.idvacina = v.idvacina
-            """;
-
-        try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                AplicacaoVacina aplicacao = new AplicacaoVacina();
-                aplicacao.setId(rs.getInt("idaplicacaovacina"));
-                aplicacao.setDataAplicacao(rs.getDate("dataaplicacao").toLocalDate());
-                aplicacao.setLocalAplicacao(rs.getString("localaplicacao"));
-
-                Paciente paciente = new Paciente();
-                paciente.setId(rs.getInt("idpaciente"));
-                paciente.setNome(rs.getString("nomepaciente"));
-                aplicacao.setPaciente(paciente);
-
-                ProfissionalDeSaude profissional = new ProfissionalDeSaude();
-                profissional.setId(rs.getInt("idprofissionaldesaude"));
-                profissional.setNome(rs.getString("nomeprofissional"));
-                aplicacao.setProfissional(profissional);
-
+    
+    public ArrayList<AplicacaoVacina> getAplicacaoVacina(int pacienteId){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        ArrayList<AplicacaoVacina> listaAplicacaoVacina = new ArrayList<>();
+        
+        try{
+            stmt = con.prepareStatement("SELECT * FROM view_aplicacao_vacina WHERE paciente_id = ? ORDER BY data_aplicacao DESC");
+            stmt.setInt(1, pacienteId);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                AplicacaoVacina aplicacaoVacina = new AplicacaoVacina();
+                
+                aplicacaoVacina.setDataAplicacao(rs.getString("data_aplicacao"));
+                aplicacaoVacina.setLocalAplicacao(rs.getString("local_aplicacao"));
+                
                 Vacina vacina = new Vacina();
-                vacina.setId(rs.getInt("idvacina"));
-                vacina.setNome(rs.getString("nomevacina"));
-                vacina.setFabricante(rs.getString("fabricante"));
-                aplicacao.setVacina(vacina);
-
-                lista.add(aplicacao);
-            }
-
-        } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Erro ao acessar o banco de dados:\n" + e.getMessage());
-
+                vacina.setId(rs.getInt("vacina_id"));
+                vacina.setNome(rs.getString("vacina_nome"));
+                vacina.setDosesNecessarias(rs.getInt("vacina_doses_necessarias"));
+                aplicacaoVacina.setVacina(vacina);
+                
+                Paciente paciente = new Paciente();
+                paciente.setId(rs.getInt("paciente_id"));
+                paciente.setNome(rs.getString("paciente_nome"));
+                aplicacaoVacina.setPaciente(paciente);
+                
+                ProfissionalDeSaude profissionalSaude = new ProfissionalDeSaude();
+                profissionalSaude.setId(rs.getInt("profissional_id"));
+                profissionalSaude.setNome(rs.getString("profissional_nome"));
+                aplicacaoVacina.setResponsavel(profissionalSaude);
+                
+                listaAplicacaoVacina.add(aplicacaoVacina);
+            } 
+        } catch(SQLException ex){
+            System.err.println("Erro: " + ex);
+        } finally {
+            Conexao.closeConnection(con, stmt, rs);
         }
-
-        return lista;
+        return listaAplicacaoVacina;
+    }
+    
+    public boolean update(AplicacaoVacina aplicacaoVacina){
+        PreparedStatement stmt = null;
+        
+        try{
+            stmt = con.prepareStatement("UPDATE aplicacao_vacina SET data_aplicacao = ?, local_aplicacao = ? WHERE id = ? and paciente_id = ? and profissional_saude_id = ? and vacina_id = ?");
+            stmt.setString(1, aplicacaoVacina.getDataAplicacao());
+            stmt.setString(2, aplicacaoVacina.getLocalAplicacao());
+            stmt.setInt(3, aplicacaoVacina.getId());
+            stmt.setInt(4, aplicacaoVacina.getPaciente().getId());
+            stmt.setInt(5, aplicacaoVacina.getResponsavel().getId());
+            stmt.setInt(6, aplicacaoVacina.getVacina().getId());
+            stmt.executeUpdate();
+            return true;
+        } catch(SQLException ex){
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally {
+            Conexao.closeConnection(con, stmt);
+        }
+    }
+    
+    public boolean delete(AplicacaoVacina aplicacaoVacina){
+        PreparedStatement stmt = null;
+        
+        try{
+            stmt = con.prepareStatement("DELETE FROM aplicacao_vacina WHERE id = ? and paciente_id = ? and profissional_saude_id = ? and vacina_id = ?");
+            stmt.setInt(1, aplicacaoVacina.getId());
+            stmt.setInt(2, aplicacaoVacina.getPaciente().getId());
+            stmt.setInt(3, aplicacaoVacina.getResponsavel().getId());
+            stmt.setInt(4, aplicacaoVacina.getVacina().getId());
+            stmt.executeUpdate();
+            return true;
+        } catch(SQLException ex){
+            System.err.println("Erro: " + ex);
+            return false;
+        } finally{
+            Conexao.closeConnection(con, stmt);
+        }
     }
 }

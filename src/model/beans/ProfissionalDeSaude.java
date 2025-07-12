@@ -1,22 +1,13 @@
-package model.beans;
+package model.bean;
 
-public class ProfissionalDeSaude {
-    private int id;
-    private String nome;
-    private String cpf;
-    private int registroProfissional;
+public class ProfissionalSaude {
+    int id;
+    String registroProfissional;
+    String cpf;
+    String nome;
+    
+    public ProfissionalSaude(){}
 
-    public ProfissionalDeSaude() {
-    }
-
-    public ProfissionalDeSaude(int id, String nome, String cpf, int registroProfissional) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.registroProfissional = registroProfissional;
-    }
-
-    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -24,13 +15,13 @@ public class ProfissionalDeSaude {
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getNome() {
-        return nome;
+    
+    public String getRegistroProfissional() {
+        return registroProfissional;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setRegistroProfissional(String registroProfissional) {
+        this.registroProfissional = registroProfissional;
     }
 
     public String getCpf() {
@@ -41,16 +32,17 @@ public class ProfissionalDeSaude {
         this.cpf = cpf;
     }
 
-    public int getRegistroProfissional() {
-        return registroProfissional;
+    public String getNome() {
+        return nome;
     }
 
-    public void setRegistroProfissional(int registroProfissional) {
-        this.registroProfissional = registroProfissional;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
+    
     @Override
-public String toString() {
-    return nome;
-}
-
+    public String toString(){
+        return nome;
+    }
+    
 }

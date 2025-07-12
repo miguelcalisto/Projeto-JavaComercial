@@ -1,62 +1,65 @@
-package model.table;
+package tablemodel;
 
-import model.beans.AplicacaoVacina;
-import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.AbstractTableModel;
+import model.bean.AplicacaoVacina;
 
 public class AplicacaoVacinaTableModel extends AbstractTableModel {
-
-    private final String[] colunas = {
-        "ID", "Paciente", "Profissional", "Vacina",
-        "Data Aplicação", "Local"
-    };
-
-    private List<AplicacaoVacina> aplicacoes;
-
-    public AplicacaoVacinaTableModel(List<AplicacaoVacina> aplicacoes) {
-        this.aplicacoes = aplicacoes;
+    
+    private List<AplicacaoVacina> listaAplicacaoVacina;
+    private String[] colunas = {"Paciente", "Responsavel", "Vacina", "Data de Aplicacao", "Local de Aplicacao", "Doses Necessárias"};
+    
+    public AplicacaoVacinaTableModel(){
+        listaAplicacaoVacina = new ArrayList<>();
+        
     }
-
-    @Override
-    public int getRowCount() {
-        return aplicacoes.size();
+    
+    public AplicacaoVacinaTableModel(List<AplicacaoVacina> aplicacaoVacina){
+        this();
+        this.listaAplicacaoVacina.addAll(aplicacaoVacina);
     }
-
+    
     @Override
-    public int getColumnCount() {
+    public int getRowCount(){
+        return listaAplicacaoVacina.size();
+    }
+    
+    @Override
+    public int getColumnCount(){
         return colunas.length;
     }
-
+    
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        AplicacaoVacina a = aplicacoes.get(rowIndex);
-        return switch (columnIndex) {
-            case 0 -> a.getId();
-            case 1 -> a.getPaciente().getNome();
-            case 2 -> a.getProfissional().getNome();
-            case 3 -> a.getVacina().getNome();
-            case 4 -> a.getDataAplicacao();
-            case 5 -> a.getLocalAplicacao();
-            default -> null;
-        };
+    public Object getValueAt(int linha, int coluna){
+        AplicacaoVacina aplicacaoVacina = listaAplicacaoVacina.get(linha);
+        switch(coluna){
+            case 0:
+                return aplicacaoVacina.getPaciente().getNome();
+            case 1:
+                return aplicacaoVacina.getResponsavel().getNome();
+            case 2:
+                return aplicacaoVacina.getVacina().getNome();
+            case 3:
+                return aplicacaoVacina.getDataAplicacao();
+            case 4:
+                return aplicacaoVacina.getLocalAplicacao();
+            case 5:
+                return aplicacaoVacina.getVacina().getDosesNecessarias();
+            default:
+                return "";
+        }
     }
-
+    
     @Override
-    public String getColumnName(int column) {
+    public String getColumnName(int column){
         return colunas[column];
     }
-
-    public AplicacaoVacina getAplicacaoAt(int rowIndex) {
-        return aplicacoes.get(rowIndex);
+    
+    public AplicacaoVacina getAplicacaoVacina(int linha){
+        if (linha >= listaAplicacaoVacina.size()){
+            return null;
+        }
+        return listaAplicacaoVacina.get(linha);
     }
-
-    public void setAplicacoes(List<AplicacaoVacina> aplicacoes) {
-        this.aplicacoes = aplicacoes;
-        fireTableDataChanged();
-    }
-
-    public List<AplicacaoVacina> getAplicacoes() {
-    return aplicacoes;
-}
-
 }

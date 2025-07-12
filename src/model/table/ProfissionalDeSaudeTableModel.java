@@ -1,56 +1,58 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package model.table;
 
-/**
- *
- * @author debian
- */
-
-import model.beans.ProfissionalDeSaude;
 import java.util.List;
+import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
+import model.bean.ProfissionalSaude;
 
 public class ProfissionalDeSaudeTableModel extends AbstractTableModel {
-
-    private final String[] colunas = {"ID", "Nome", "CPF", "Registro Profissional"};
-    private final List<ProfissionalDeSaude> profissionais;
-
-    public ProfissionalDeSaudeTableModel(List<ProfissionalDeSaude> profissionais) {
-        this.profissionais = profissionais;
+    
+    private java.util.List<ProfissionalSaude> listaProfissionaisSaude;
+    private String[] colunas = {"Nome", "CPF", "Registro Profissional"};
+    
+    public ProfissionalDeSaudeTableModel(){   
+        listaProfissionaisSaude = new ArrayList<>();
     }
-
-    @Override
-    public int getRowCount() {
-        return profissionais.size();
+    
+    public ProfissionalDeSaudeTableModel(java.util.List<ProfissionalSaude> profissionaisSaude){
+        this();
+        this.listaProfissionaisSaude.addAll(profissionaisSaude);
     }
-
+    
     @Override
-    public int getColumnCount() {
+    public int getRowCount(){
+        return listaProfissionaisSaude.size();
+    }
+    
+    @Override
+    public int getColumnCount(){
         return colunas.length;
     }
-
+    
     @Override
-    public String getColumnName(int coluna) {
-        return colunas[coluna];
+    public Object getValueAt(int linha, int coluna){
+        ProfissionalSaude profissionalSaude = listaProfissionaisSaude.get(linha);
+        switch(coluna){
+            case 0:
+                return profissionalSaude.getNome();
+            case 1:
+                return profissionalSaude.getCpf();
+            case 2:
+                return profissionalSaude.getRegistroProfissional();
+            default:
+                return "";
+        }
     }
-
+    
     @Override
-    public Object getValueAt(int linha, int coluna) {
-        ProfissionalDeSaude p = profissionais.get(linha);
-        return switch (coluna) {
-            case 0 -> p.getId();
-            case 1 -> p.getNome();
-            case 2 -> p.getCpf();
-            case 3 -> p.getRegistroProfissional();
-            default -> null;
-        };
+    public String getColumnName(int column){
+        return colunas[column];
     }
-
-    public ProfissionalDeSaude getProfissional(int linha) {
-        return profissionais.get(linha);
+    
+    public ProfissionalSaude getProfissionalSaude(int linha){
+        if (linha >= listaProfissionaisSaude.size()){
+            return null;
+        }
+        return listaProfissionaisSaude.get(linha);
     }
 }
-

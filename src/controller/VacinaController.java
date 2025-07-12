@@ -1,51 +1,57 @@
 package controller;
 
-import java.util.List;
-import javax.swing.JOptionPane;
-import model.beans.Vacina;
+import java.util.ArrayList;
+import model.bean.Vacina;
 import model.dao.VacinaDAO;
 
 public class VacinaController {
-
-    private VacinaDAO vacinaDAO;
-
-    public VacinaController() {
-        this.vacinaDAO = new VacinaDAO();
+    
+    public boolean create(String nome, String fabricante, int dosesNecessarias){
+        Vacina vacina = new Vacina();
+        vacina.setNome(nome);
+        vacina.setFabricante(fabricante);
+        vacina.setDosesNecessarias(dosesNecessarias);
+        
+        VacinaDAO vacinaDAO = new VacinaDAO();
+        return vacinaDAO.create(vacina);
     }
-
-    public void salvarVacina(Vacina vacina) {
-        if (validarVacina(vacina)) {
-            vacinaDAO.salvar(vacina);
-            JOptionPane.showMessageDialog(null, "Vacina salva com sucesso!");
-        } else {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente.");
-        }
+    
+    public ArrayList<Vacina> read(){
+        VacinaDAO vacinaDAO = new VacinaDAO();
+        return vacinaDAO.read();
     }
-
-    public void alterarVacina(Vacina vacina) {
-        if (validarVacina(vacina)) {
-            vacinaDAO.alterarPorId(vacina);
-            JOptionPane.showMessageDialog(null, "Vacina alterada com sucesso!");
-        } else {
-            JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente.");
-        }
+    
+    public ArrayList<Vacina> getVacinasNome(String nome){
+        VacinaDAO vacinaDAO = new VacinaDAO();
+        return vacinaDAO.getVacinasNome(nome);
     }
-
-    public void excluirVacina(int id) {
-        vacinaDAO.excluirPorId(id);
-        JOptionPane.showMessageDialog(null, "Vacina excluída com sucesso!");
+    
+    public ArrayList<Vacina> getVacinasFabricante(String fabricante){
+        VacinaDAO vacinaDAO = new VacinaDAO();
+        return vacinaDAO.getVacinasFabricante(fabricante);
     }
-
-    public Vacina buscarVacinaPorId(int id) {
-        return vacinaDAO.buscarPorId(id);
+    
+    public ArrayList<Vacina> getVacinasDoses(int doses){
+        VacinaDAO vacinaDAO = new VacinaDAO();
+        return vacinaDAO.getVacinasDoses(doses);
     }
-
-    public List<Vacina> listarTodasVacinas() {
-        return vacinaDAO.listarTodos();
+    
+    public boolean update(int id, String nome, String fabricante, int dosesNecessarias){
+        Vacina vacina = new Vacina();
+        vacina.setId(id);
+        vacina.setNome(nome);
+        vacina.setFabricante(fabricante);
+        vacina.setDosesNecessarias(dosesNecessarias);
+        
+        VacinaDAO vacinaDAO = new VacinaDAO();
+        return vacinaDAO.update(vacina);
     }
-
-    private boolean validarVacina(Vacina vacina) {
-        return vacina.getNome() != null && !vacina.getNome().trim().isEmpty()
-            && vacina.getFabricante() != null && !vacina.getFabricante().trim().isEmpty();
+    
+    public boolean delete(int id){
+        Vacina vacina = new Vacina();
+        vacina.setId(id);
+        
+        VacinaDAO vacinaDAO = new VacinaDAO();
+        return vacinaDAO.delete(vacina);
     }
 }

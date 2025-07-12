@@ -1,53 +1,58 @@
 package model.table;
 
-import javax.swing.table.AbstractTableModel;
 import java.util.List;
-import model.beans.Vacina;
+import java.util.ArrayList;
+import javax.swing.table.AbstractTableModel;
+import model.bean.Vacina;
 
 public class VacinaTableModel extends AbstractTableModel {
-
-    private final String[] colunas = {"ID", "Nome", "Fabricante"};
-    private List<Vacina> vacinas;
-
-    public VacinaTableModel(List<Vacina> vacinas) {
-        this.vacinas = vacinas;
+    
+    private List<Vacina> listaVacinas;
+    private String[] colunas = {"Nome", "Fabricante", "Doses Necessarias"};
+    
+    public VacinaTableModel(){
+        listaVacinas = new ArrayList<>();
     }
-
+    
+    public VacinaTableModel(List<Vacina> vacinas){
+        this();
+        this.listaVacinas.addAll(vacinas);
+    }
+    
     @Override
-    public int getRowCount() {
-        return vacinas.size();
+    public int getRowCount(){
+        return listaVacinas.size();
     }
-    public int getColumnCount() {
+    
+    @Override
+    public int getColumnCount(){
         return colunas.length;
     }
-
-    @Override
-    public Object getValueAt(int rowIndex, int columnIndex) {
-        Vacina vacina = vacinas.get(rowIndex);
-        switch (columnIndex) {
-            case 0:
-                return vacina.getId();
-            case 1:
-                return vacina.getNome();
-            case 2:
-                return vacina.getFabricante();
-            default:
-                return  null;
     
+    @Override
+    public Object getValueAt(int linha, int coluna){
+        Vacina vacina = listaVacinas.get(linha);
+        switch(coluna){
+            case 0:
+                return vacina.getNome();
+            case 1:
+                return vacina.getFabricante();
+            case 2:
+                return vacina.getDosesNecessarias();
+            default:
+                return "";
         }
     }
-
+    
     @Override
-    public String getColumnName(int column) {
+    public String getColumnName(int column){
         return colunas[column];
     }
-
-    public Vacina getVacinaAt(int rowIndex) {
-        return vacinas.get(rowIndex);
-    }
-
-    public void setVacinas(List<Vacina> vacinas) {
-        this.vacinas = vacinas;
-        fireTableDataChanged();
+    
+    public Vacina getVacina(int linha){
+        if (linha >= listaVacinas.size()){
+            return null;
+        }
+        return listaVacinas.get(linha);
     }
 }
