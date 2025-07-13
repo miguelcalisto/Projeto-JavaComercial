@@ -1,4 +1,4 @@
-package model.bean;
+package model.beans;
 
 public class Vacina {
     
@@ -40,7 +40,22 @@ public class Vacina {
     public void setDosesNecessarias(int dosesNecessarias) {
         this.dosesNecessarias = dosesNecessarias;
     }
-    
+    // ... seus getters e setters
+
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    Vacina vacina = (Vacina) obj;
+    return id == vacina.id;
+}
+
+@Override
+public int hashCode() {
+    return Integer.hashCode(id);
+}
+
+
     @Override
     public String toString(){
         return nome;

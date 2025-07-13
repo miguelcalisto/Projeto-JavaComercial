@@ -1,7 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
-import model.bean.Vacina;
+import model.beans.Vacina;
 import model.dao.VacinaDAO;
 
 public class VacinaController {

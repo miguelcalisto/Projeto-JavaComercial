@@ -3,18 +3,19 @@ package model.table;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import model.bean.ProfissionalSaude;
+import model.beans.ProfissionalDeSaude;
+import model.beans.ProfissionalDeSaude;
 
 public class ProfissionalDeSaudeTableModel extends AbstractTableModel {
     
-    private java.util.List<ProfissionalSaude> listaProfissionaisSaude;
+    private java.util.List<ProfissionalDeSaude> listaProfissionaisSaude;
     private String[] colunas = {"Nome", "CPF", "Registro Profissional"};
     
     public ProfissionalDeSaudeTableModel(){   
         listaProfissionaisSaude = new ArrayList<>();
     }
     
-    public ProfissionalDeSaudeTableModel(java.util.List<ProfissionalSaude> profissionaisSaude){
+    public ProfissionalDeSaudeTableModel(java.util.List<ProfissionalDeSaude> profissionaisSaude){
         this();
         this.listaProfissionaisSaude.addAll(profissionaisSaude);
     }
@@ -31,7 +32,7 @@ public class ProfissionalDeSaudeTableModel extends AbstractTableModel {
     
     @Override
     public Object getValueAt(int linha, int coluna){
-        ProfissionalSaude profissionalSaude = listaProfissionaisSaude.get(linha);
+        ProfissionalDeSaude profissionalSaude = listaProfissionaisSaude.get(linha);
         switch(coluna){
             case 0:
                 return profissionalSaude.getNome();
@@ -49,7 +50,7 @@ public class ProfissionalDeSaudeTableModel extends AbstractTableModel {
         return colunas[column];
     }
     
-    public ProfissionalSaude getProfissionalSaude(int linha){
+    public ProfissionalDeSaude getProfissionalSaude(int linha){
         if (linha >= listaProfissionaisSaude.size()){
             return null;
         }

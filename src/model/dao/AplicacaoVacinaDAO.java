@@ -40,7 +40,7 @@ public class AplicacaoVacinaDAO {
         }
     }
     
-    public ArrayList<AplicacaoVacina> getAplicacaoVacina(int pacienteId){
+   public ArrayList<AplicacaoVacina> getAplicacaoVacina(int pacienteId){
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
@@ -52,7 +52,9 @@ public class AplicacaoVacinaDAO {
             rs = stmt.executeQuery();
             while(rs.next()){
                 AplicacaoVacina aplicacaoVacina = new AplicacaoVacina();
-                
+                   aplicacaoVacina.setId(rs.getInt("id"));
+aplicacaoVacina.setId(rs.getInt("aplicacao_id"));
+
                 aplicacaoVacina.setDataAplicacao(rs.getString("data_aplicacao"));
                 aplicacaoVacina.setLocalAplicacao(rs.getString("local_aplicacao"));
                 
@@ -69,18 +71,73 @@ public class AplicacaoVacinaDAO {
                 
                 ProfissionalDeSaude profissionalSaude = new ProfissionalDeSaude();
                 profissionalSaude.setId(rs.getInt("profissional_id"));
-                profissionalSaude.setNome(rs.getString("profissional_nome"));
-                aplicacaoVacina.setResponsavel(profissionalSaude);
+               profissionalSaude.setNome(rs.getString("profissional_nome"));               
+               aplicacaoVacina.setResponsavel(profissionalSaude);
                 
                 listaAplicacaoVacina.add(aplicacaoVacina);
             } 
         } catch(SQLException ex){
             System.err.println("Erro: " + ex);
         } finally {
-            Conexao.closeConnection(con, stmt, rs);
+          Conexao.closeConnection(con, stmt, rs);
         }
         return listaAplicacaoVacina;
     }
+    
+//    public ArrayList<AplicacaoVacina> getAplicacaoVacina(int pacienteId){
+//    PreparedStatement stmt = null;
+//    ResultSet rs = null;
+//
+//    ArrayList<AplicacaoVacina> listaAplicacaoVacina = new ArrayList<>();
+//
+//    try{
+//        stmt = con.prepareStatement("SELECT * FROM view_aplicacao_vacina WHERE paciente_id = ? ORDER BY data_aplicacao DESC");
+//        stmt.setInt(1, pacienteId);
+//        rs = stmt.executeQuery();
+//        while(rs.next()){
+//            AplicacaoVacina aplicacaoVacina = new AplicacaoVacina();
+//
+//            // Corrigido: nome correto da coluna vindo da view
+//            aplicacaoVacina.setId(rs.getInt("aplicacao_id")); 
+//
+//            aplicacaoVacina.setDataAplicacao(rs.getString("data_aplicacao"));
+//            aplicacaoVacina.setLocalAplicacao(rs.getString("local_aplicacao"));
+//
+//            // Mapeia dados da vacina
+//            Vacina vacina = new Vacina();
+//            vacina.setId(rs.getInt("vacina_id"));
+//            vacina.setNome(rs.getString("vacina_nome"));
+//            vacina.setDosesNecessarias(rs.getInt("vacina_doses_necessarias"));
+//            aplicacaoVacina.setVacina(vacina);
+//
+//            // Mapeia dados do paciente
+//            Paciente paciente = new Paciente();
+//            paciente.setId(rs.getInt("paciente_id"));
+//            paciente.setNome(rs.getString("paciente_nome"));
+//            aplicacaoVacina.setPaciente(paciente);
+//
+//            // Mapeia dados do profissional de saúde
+//            ProfissionalDeSaude profissionalSaude = new ProfissionalDeSaude();
+//            profissionalSaude.setId(rs.getInt("profissional_id"));
+//            profissionalSaude.setNome(rs.getString("profissional_nome"));               
+//            aplicacaoVacina.setResponsavel(profissionalSaude);
+//
+//            // Adiciona o objeto à lista
+//            listaAplicacaoVacina.add(aplicacaoVacina);
+//        } 
+//    } catch(SQLException ex){
+//        System.err.println("Erro: " + ex);
+//    } finally {
+//        Conexao.closeConnection(con, stmt, rs);
+//    }
+//    return listaAplicacaoVacina;
+//}
+
+    
+    
+    
+    
+    
     
     public boolean update(AplicacaoVacina aplicacaoVacina){
         PreparedStatement stmt = null;
@@ -103,22 +160,37 @@ public class AplicacaoVacinaDAO {
         }
     }
     
-    public boolean delete(AplicacaoVacina aplicacaoVacina){
-        PreparedStatement stmt = null;
-        
-        try{
-            stmt = con.prepareStatement("DELETE FROM aplicacao_vacina WHERE id = ? and paciente_id = ? and profissional_saude_id = ? and vacina_id = ?");
-            stmt.setInt(1, aplicacaoVacina.getId());
-            stmt.setInt(2, aplicacaoVacina.getPaciente().getId());
-            stmt.setInt(3, aplicacaoVacina.getResponsavel().getId());
-            stmt.setInt(4, aplicacaoVacina.getVacina().getId());
-            stmt.executeUpdate();
-            return true;
-        } catch(SQLException ex){
-            System.err.println("Erro: " + ex);
-            return false;
-        } finally{
-            Conexao.closeConnection(con, stmt);
-        }
+//    public boolean delete(AplicacaoVacina aplicacaoVacina){
+//        PreparedStatement stmt = null;
+//        
+//        try{
+//            stmt = con.prepareStatement("DELETE FROM aplicacao_vacina WHERE id = ? and paciente_id = ? and profissional_saude_id = ? and vacina_id = ?");
+//            stmt.setInt(1, aplicacaoVacina.getId());
+//            stmt.setInt(2, aplicacaoVacina.getPaciente().getId());
+//            stmt.setInt(3, aplicacaoVacina.getResponsavel().getId());
+//            stmt.setInt(4, aplicacaoVacina.getVacina().getId());
+//            stmt.executeUpdate();
+//            return true;
+//        } catch(SQLException ex){
+//            System.err.println("Erro: " + ex);
+//            return false;
+//        } finally{
+//            Conexao.closeConnection(con, stmt);
+//        }
+//    }
+
+
+public boolean delete(int idAplicacaoVacina) {
+    PreparedStatement stmt = null;
+    try {
+        stmt = con.prepareStatement("DELETE FROM aplicacao_vacina WHERE id = ?");
+        stmt.setInt(1, idAplicacaoVacina);
+        int rowsAffected = stmt.executeUpdate();
+        return rowsAffected > 0;
+    } catch(SQLException ex) {
+        System.err.println("Erro: " + ex);
+        return false;
+    } finally {
+        Conexao.closeConnection(con, stmt);
     }
-}
+}}

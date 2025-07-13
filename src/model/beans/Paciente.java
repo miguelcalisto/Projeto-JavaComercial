@@ -1,5 +1,5 @@
 
-package model.bean;
+package model.beans;
 
 public class Paciente {
     int id;
@@ -67,4 +67,45 @@ public class Paciente {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    
+//    @Override
+//public boolean equals(Object obj) {
+//    if (this == obj) return true;
+//    if (obj == null || getClass() != obj.getClass()) return false;
+//    Paciente other = (Paciente) obj;
+//    return this.id == other.id;
+//}
+//@Override
+//public int hashCode() {
+//    return Integer.hashCode(id);
+//}
+//
+//    
+//    @Override
+//public String toString() {
+//    return nome; // ou getNome(), se preferir
+//}
+    
+    
+    
+@Override
+public String toString() {
+    return nome; // usado no JComboBox
+}
+
+@Override
+public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Paciente paciente = (Paciente) o;
+    return id == paciente.id;
+}
+
+@Override
+public int hashCode() {
+    return Integer.hashCode(id);
+}
+
+
 }

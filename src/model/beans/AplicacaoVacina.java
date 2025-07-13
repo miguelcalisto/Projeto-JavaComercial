@@ -1,10 +1,12 @@
-package model.bean;
+package model.beans;
+
+import model.beans.ProfissionalDeSaude;
 
 public class AplicacaoVacina {
     
     int id;
     Paciente paciente;
-    ProfissionalSaude responsavel;
+    ProfissionalDeSaude responsavel;
     Vacina vacina;
     String dataAplicacao;
     String localAplicacao;
@@ -27,11 +29,11 @@ public class AplicacaoVacina {
         this.paciente = paciente;
     }
 
-    public ProfissionalSaude getResponsavel() {
+    public ProfissionalDeSaude getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel(ProfissionalSaude responsavel) {
+    public void setResponsavel(ProfissionalDeSaude responsavel) {
         this.responsavel = responsavel;
     }
 

@@ -3,7 +3,7 @@ package model.table;
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import model.bean.Vacina;
+import model.beans.Vacina;
 
 public class VacinaTableModel extends AbstractTableModel {
     

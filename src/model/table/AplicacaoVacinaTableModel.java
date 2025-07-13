@@ -1,9 +1,9 @@
-package tablemodel;
+package model.table;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import model.bean.AplicacaoVacina;
+import model.beans.AplicacaoVacina;
 
 public class AplicacaoVacinaTableModel extends AbstractTableModel {
     
@@ -56,10 +56,17 @@ public class AplicacaoVacinaTableModel extends AbstractTableModel {
         return colunas[column];
     }
     
+//    public AplicacaoVacina getAplicacaoVacina(int linha){
+//        if (linha >= listaAplicacaoVacina.size()){
+//            return null;
+//        }
+//        return listaAplicacaoVacina.get(linha);
+//    }
     public AplicacaoVacina getAplicacaoVacina(int linha){
-        if (linha >= listaAplicacaoVacina.size()){
-            return null;
-        }
-        return listaAplicacaoVacina.get(linha);
+    if (linha < 0 || linha >= listaAplicacaoVacina.size()) {
+        return null;
     }
+    return listaAplicacaoVacina.get(linha);
+}
+
 }

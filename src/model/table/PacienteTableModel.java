@@ -1,9 +1,9 @@
-package tablemodel;
+package model.table;
 
 import java.util.List;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import model.bean.Paciente;
+import model.beans.Paciente;
 
 public class PacienteTableModel extends AbstractTableModel {
     

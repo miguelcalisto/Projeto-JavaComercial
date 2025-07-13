@@ -2,7 +2,7 @@
 package controller;
 
 import java.util.ArrayList;
-import model.bean.Paciente;
+import model.beans.Paciente;
 import model.dao.PacienteDAO;
 
 public class PacienteController {
@@ -43,6 +43,8 @@ public class PacienteController {
         paciente.setSexo(sexo);
         paciente.setCpf(cpf);
         paciente.setNome(nome);
+            paciente.setTelefone(telefone); // 
+
         
         PacienteDAO pacienteDAO = new PacienteDAO();
         return pacienteDAO.update(paciente);

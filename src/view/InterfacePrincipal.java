@@ -4,6 +4,8 @@
  */
 package view;
 
+import model.beans.Paciente;
+
 /**
  *
  * @author debian
@@ -95,7 +97,7 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
     private void btnCadastrarProfissionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProfissionalActionPerformed
         // TODO add your handling code here:
-        CadastrarProfissional cadProfissional = new CadastrarProfissional();
+        CadastroProfissional cadProfissional = new CadastroProfissional();
         cadProfissional.setVisible(true);
     }//GEN-LAST:event_btnCadastrarProfissionalActionPerformed
 
@@ -113,8 +115,12 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
     private void btnAplicacaoVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicacaoVacinaActionPerformed
         // TODO add your handling code here:
-        CadastroAplicacaoVacina cadastroAplicacaoVacina = new CadastroAplicacaoVacina();
-        cadastroAplicacaoVacina.setVisible(true);
+//        CadastroAplicacaoVacina cadastroAplicacaoVacina = new CadastroAplicacaoVacina();
+//        cadastroAplicacaoVacina.setVisible(true
+  Paciente paciente = new Paciente(); // ou um paciente já existente
+CadastroAplicacaoVacina cadastroAplicacaoVacina = new CadastroAplicacaoVacina(paciente);
+cadastroAplicacaoVacina.setVisible(true);
+this.dispose();
     }//GEN-LAST:event_btnAplicacaoVacinaActionPerformed
 
     /**
