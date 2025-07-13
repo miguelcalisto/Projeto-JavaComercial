@@ -52,7 +52,7 @@ public class AplicacaoVacinaDAO {
             rs = stmt.executeQuery();
             while(rs.next()){
                 AplicacaoVacina aplicacaoVacina = new AplicacaoVacina();
-                   aplicacaoVacina.setId(rs.getInt("id"));
+//                   aplicacaoVacina.setId(rs.getInt("id"));
 aplicacaoVacina.setId(rs.getInt("aplicacao_id"));
 
                 aplicacaoVacina.setDataAplicacao(rs.getString("data_aplicacao"));
@@ -82,7 +82,9 @@ aplicacaoVacina.setId(rs.getInt("aplicacao_id"));
           Conexao.closeConnection(con, stmt, rs);
         }
         return listaAplicacaoVacina;
+        
     }
+   
     
 //    public ArrayList<AplicacaoVacina> getAplicacaoVacina(int pacienteId){
 //    PreparedStatement stmt = null;

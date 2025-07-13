@@ -10,7 +10,7 @@ import model.beans.AplicacaoVacina;
 import model.beans.ProfissionalDeSaude;
 import model.beans.Vacina;
 import model.table.AplicacaoVacinaTableModel;
-
+//branch exame
 public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     
     public Paciente paciente;
@@ -66,14 +66,20 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     }
 }
 
-    
     private void getAplicacaoVacina(){
-        tableModelAplicacaoVacina = new AplicacaoVacinaTableModel(aplicacaoVacinaController.getAplicacaoVacina(this.paciente.getId()));
-        
-        tbTabela.setModel(tableModelAplicacaoVacina);
-        
-        limpaCampos();
-    }
+    tableModelAplicacaoVacina = new AplicacaoVacinaTableModel(
+        aplicacaoVacinaController.getAplicacaoVacina(this.paciente.getId())
+    );
+    tbTabela.setModel(tableModelAplicacaoVacina);
+    limpaCampos();
+}
+//    private void getAplicacaoVacina(){
+//        tableModelAplicacaoVacina = new AplicacaoVacinaTableModel(aplicacaoVacinaController.getAplicacaoVacina(this.paciente.getId()));
+//        
+//        tbTabela.setModel(tableModelAplicacaoVacina);
+//        
+//        limpaCampos();
+//    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -312,34 +318,79 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
 //    this.getAplicacaoVacina();
 
 
-Paciente pacienteSelecionado = (Paciente) cmbPacientes.getSelectedItem();
-Paciente pacienteParaAplicacao = new Paciente();
-pacienteParaAplicacao.setId(pacienteSelecionado.getId());
-pacienteParaAplicacao.setNome(pacienteSelecionado.getNome());
-pacienteParaAplicacao.setCpf(pacienteSelecionado.getCpf());
-pacienteParaAplicacao.setSexo(pacienteSelecionado.getSexo());
-pacienteParaAplicacao.setTelefone(pacienteSelecionado.getTelefone());
-pacienteParaAplicacao.setDataNascimento(pacienteSelecionado.getDataNascimento());
-pacienteParaAplicacao.setAlergias(pacienteSelecionado.getAlergias());
+//Paciente pacienteSelecionado = (Paciente) cmbPacientes.getSelectedItem();
+//Paciente pacienteParaAplicacao = new Paciente();
+//pacienteParaAplicacao.setId(pacienteSelecionado.getId());
+//pacienteParaAplicacao.setNome(pacienteSelecionado.getNome());
+//pacienteParaAplicacao.setCpf(pacienteSelecionado.getCpf());
+//pacienteParaAplicacao.setSexo(pacienteSelecionado.getSexo());
+//pacienteParaAplicacao.setTelefone(pacienteSelecionado.getTelefone());
+//pacienteParaAplicacao.setDataNascimento(pacienteSelecionado.getDataNascimento());
+//pacienteParaAplicacao.setAlergias(pacienteSelecionado.getAlergias());
+//
+//ProfissionalDeSaude profSelecionado = (ProfissionalDeSaude) cmbProfissional.getSelectedItem();
+//ProfissionalDeSaude profissionalParaAplicacao = new ProfissionalDeSaude();
+//profissionalParaAplicacao.setId(profSelecionado.getId());
+//profissionalParaAplicacao.setNome(profSelecionado.getNome());
+//profissionalParaAplicacao.setCpf(profSelecionado.getCpf());
+//profissionalParaAplicacao.setRegistroProfissional(profSelecionado.getRegistroProfissional());
+//
+//Vacina vacinaSelecionada = (Vacina) cmbVacina.getSelectedItem();
+//Vacina vacinaParaAplicacao = new Vacina();
+//vacinaParaAplicacao.setId(vacinaSelecionada.getId());
+//vacinaParaAplicacao.setNome(vacinaSelecionada.getNome());
+//vacinaParaAplicacao.setFabricante(vacinaSelecionada.getFabricante());
+//vacinaParaAplicacao.setDosesNecessarias(vacinaSelecionada.getDosesNecessarias());
+//
+//aplicacaoVacinaController.create(pacienteParaAplicacao, profissionalParaAplicacao, vacinaParaAplicacao, jtfData.getText(), txtLocalAplic.getText());
+//
+////this.paciente = pacienteParaAplicacao;
+//this.getAplicacaoVacina();
 
-ProfissionalDeSaude profSelecionado = (ProfissionalDeSaude) cmbProfissional.getSelectedItem();
-ProfissionalDeSaude profissionalParaAplicacao = new ProfissionalDeSaude();
-profissionalParaAplicacao.setId(profSelecionado.getId());
-profissionalParaAplicacao.setNome(profSelecionado.getNome());
-profissionalParaAplicacao.setCpf(profSelecionado.getCpf());
-profissionalParaAplicacao.setRegistroProfissional(profSelecionado.getRegistroProfissional());
+ // Obter o paciente selecionado do ComboBox e criar uma nova instância
+    Paciente pacienteSelecionado = (Paciente) cmbPacientes.getSelectedItem();
+    Paciente pacienteParaAplicacao = new Paciente();
+    pacienteParaAplicacao.setId(pacienteSelecionado.getId());
+    pacienteParaAplicacao.setNome(pacienteSelecionado.getNome());
+    pacienteParaAplicacao.setCpf(pacienteSelecionado.getCpf());
+    pacienteParaAplicacao.setSexo(pacienteSelecionado.getSexo());
+    pacienteParaAplicacao.setTelefone(pacienteSelecionado.getTelefone());
+    pacienteParaAplicacao.setDataNascimento(pacienteSelecionado.getDataNascimento());
+    pacienteParaAplicacao.setAlergias(pacienteSelecionado.getAlergias());
 
-Vacina vacinaSelecionada = (Vacina) cmbVacina.getSelectedItem();
-Vacina vacinaParaAplicacao = new Vacina();
-vacinaParaAplicacao.setId(vacinaSelecionada.getId());
-vacinaParaAplicacao.setNome(vacinaSelecionada.getNome());
-vacinaParaAplicacao.setFabricante(vacinaSelecionada.getFabricante());
-vacinaParaAplicacao.setDosesNecessarias(vacinaSelecionada.getDosesNecessarias());
+    // Obter o profissional selecionado e criar uma nova instância
+    ProfissionalDeSaude profSelecionado = (ProfissionalDeSaude) cmbProfissional.getSelectedItem();
+    ProfissionalDeSaude profissionalParaAplicacao = new ProfissionalDeSaude();
+    profissionalParaAplicacao.setId(profSelecionado.getId());
+    profissionalParaAplicacao.setNome(profSelecionado.getNome());
+    profissionalParaAplicacao.setCpf(profSelecionado.getCpf());
+    profissionalParaAplicacao.setRegistroProfissional(profSelecionado.getRegistroProfissional());
 
-aplicacaoVacinaController.create(pacienteParaAplicacao, profissionalParaAplicacao, vacinaParaAplicacao, jtfData.getText(), txtLocalAplic.getText());
+    // Obter a vacina selecionada e criar uma nova instância
+    Vacina vacinaSelecionada = (Vacina) cmbVacina.getSelectedItem();
+    Vacina vacinaParaAplicacao = new Vacina();
+    vacinaParaAplicacao.setId(vacinaSelecionada.getId());
+    vacinaParaAplicacao.setNome(vacinaSelecionada.getNome());
+    vacinaParaAplicacao.setFabricante(vacinaSelecionada.getFabricante());
+    vacinaParaAplicacao.setDosesNecessarias(vacinaSelecionada.getDosesNecessarias());
 
-this.paciente = pacienteParaAplicacao;
-this.getAplicacaoVacina();
+    // Chamar o controller para salvar
+    boolean sucesso = aplicacaoVacinaController.create(
+        pacienteParaAplicacao,
+        profissionalParaAplicacao,
+        vacinaParaAplicacao,
+        jtfData.getText(),
+        txtLocalAplic.getText()
+    );
+
+    // Se salvou com sucesso, atualizar a tabela
+    if (sucesso) {
+        this.paciente = pacienteParaAplicacao; // se necessário manter o paciente atual na tela
+        this.getAplicacaoVacina(); // atualiza tabela com novos dados
+        JOptionPane.showMessageDialog(this, "Aplicação registrada com sucesso!");
+    } else {
+        JOptionPane.showMessageDialog(this, "Erro ao registrar aplicação.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -416,6 +467,12 @@ this.getAplicacaoVacina();
 
     private void cmbPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPacientesActionPerformed
         // TODO add your handling code here:
+        Paciente selecionado = (Paciente) cmbPacientes.getSelectedItem();
+    if (selecionado != null) {
+        this.paciente = selecionado;
+        getAplicacaoVacina(); // Atualiza a tabela para o paciente selecionado
+    }
+        
     }//GEN-LAST:event_cmbPacientesActionPerformed
 
     private void cmbVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVacinaActionPerformed
