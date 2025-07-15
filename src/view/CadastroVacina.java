@@ -63,7 +63,7 @@ public class CadastroVacina extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelVacina = new javax.swing.JLabel();
+        jlVacina = new javax.swing.JLabel();
         jlNome = new javax.swing.JLabel();
         jlFabricante = new javax.swing.JLabel();
         jlDosesNec = new javax.swing.JLabel();
@@ -82,8 +82,8 @@ public class CadastroVacina extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabelVacina.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelVacina.setText("Vacina");
+        jlVacina.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jlVacina.setText("Vacina");
 
         jlNome.setText("Nome:");
 
@@ -184,39 +184,42 @@ public class CadastroVacina extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(416, 416, 416)
-                        .addComponent(jLabelVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlDosesNec)
-                            .addComponent(jlFabricante)
-                            .addComponent(jlNome)
-                            .addComponent(jcbBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCdastrar))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome)
-                            .addComponent(txtFabricante)
-                            .addComponent(txtDosesNec)
-                            .addComponent(txtBusca)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAtualizar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnExcluir)))
-                        .addGap(38, 38, 38)
-                        .addComponent(btnImprimir))
+                        .addComponent(jlVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jScrollPanelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPanelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcbBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlDosesNec)
+                                    .addComponent(jlFabricante)
+                                    .addComponent(jlNome))
+                                .addGap(71, 71, 71)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                                    .addComponent(txtFabricante)
+                                    .addComponent(txtDosesNec)
+                                    .addComponent(txtBusca)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCdastrar)
+                                .addGap(34, 34, 34)
+                                .addComponent(btnAtualizar)
+                                .addGap(35, 35, 35)
+                                .addComponent(btnCancelar)
+                                .addGap(67, 67, 67)
+                                .addComponent(btnExcluir)
+                                .addGap(33, 33, 33)
+                                .addComponent(btnImprimir)))))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jLabelVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlVacina, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlNome)
@@ -233,14 +236,14 @@ public class CadastroVacina extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCdastrar)
                     .addComponent(btnAtualizar)
-                    .addComponent(btnExcluir)
                     .addComponent(btnCancelar)
+                    .addComponent(btnExcluir)
                     .addComponent(btnImprimir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPanelTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -362,7 +365,7 @@ public class CadastroVacina extends javax.swing.JFrame {
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
 //         TODO add your handling code here:
           Connection con = Conexao.getConnection();
-        
+        //cadastro rel de vacina
         String src = "src/reports/Simple_Blue.jasper";
         
         JasperPrint jasperPrint = null;
@@ -417,12 +420,12 @@ public class CadastroVacina extends javax.swing.JFrame {
     private javax.swing.JButton btnCdastrar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnImprimir;
-    private javax.swing.JLabel jLabelVacina;
     private javax.swing.JScrollPane jScrollPanelTabela;
     private javax.swing.JComboBox<String> jcbBusca;
     private javax.swing.JLabel jlDosesNec;
     private javax.swing.JLabel jlFabricante;
     private javax.swing.JLabel jlNome;
+    private javax.swing.JLabel jlVacina;
     private javax.swing.JTable tbTabela;
     private javax.swing.JTextField txtBusca;
     private javax.swing.JTextField txtDosesNec;
