@@ -115,10 +115,10 @@ public class InterfacePrincipal extends javax.swing.JFrame {
 
     private void btnAplicacaoVacinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicacaoVacinaActionPerformed
         // TODO add your handling code here:
-  Paciente paciente = new Paciente(); 
-CadastroAplicacaoVacina cadastroAplicacaoVacina = new CadastroAplicacaoVacina(paciente);
-cadastroAplicacaoVacina.setVisible(true);
-this.dispose();
+        Paciente paciente = new Paciente();
+        CadastroAplicacaoVacina cadastroAplicacaoVacina = new CadastroAplicacaoVacina(paciente);
+        cadastroAplicacaoVacina.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnAplicacaoVacinaActionPerformed
 
     /**

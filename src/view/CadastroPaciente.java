@@ -6,6 +6,8 @@ package view;
 import connection.Conexao;
 import controller.PacienteController;
 import java.sql.Connection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import model.beans.Paciente;
 import model.beans.Paciente;
@@ -356,39 +358,54 @@ public class CadastroPaciente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        //validacao dos campos obrigatorios
-        if (txtNome.getText().isEmpty() ||
-            jftCPF.getText().isEmpty() ||
-            jtfTelefone.getText().isEmpty() ||
-            jtfDataNascimento.getText().isEmpty()){
-                JOptionPane.showMessageDialog(this, "Prencha todos os campos obrigatórios");
-                return;
-        }
-        String sexo = "";
-        if (jrMasculino.isSelected())
-            sexo = "Masculino";
-        else if (jrFeminino.isSelected())
-            sexo = "Feminino";
-        else
-            JOptionPane.showMessageDialog(this, "Selecione o sexo do paciente!");
-        //solucao probelma datas 
-        String dataRegex = "^(0[1-9]|[12][0-9]||3[01]/(0[1-9]|1[0-2]/\\d{4}))$";
-        if (jtfDataNascimento.getText().matches(dataRegex)){
-            JOptionPane.showMessageDialog(this, "Data Invalida!");
-            return;
-        }
-        if (pacienteController.create(jtfTelefone.getText(),
-            jtfDataNascimento.getText(),
-            txtAlergias.getText(),
-            sexo,
-            jftCPF.getText(),
-            txtNome.getText())){
-        this.getListaPacientes();
+
+    if (txtNome.getText().isEmpty() ||
+        jftCPF.getText().isEmpty() ||
+        jtfTelefone.getText().isEmpty() ||
+        jtfDataNascimento.getText().isEmpty()) {
+
+        JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.");
+        return;
+    }
+
+    // Validação do sexo
+    String sexo = "";
+    if (jrMasculino.isSelected()) {
+        sexo = "Masculino";
+    } else if (jrFeminino.isSelected()) {
+        sexo = "Feminino";
+    } else {
+        JOptionPane.showMessageDialog(this, "Selecione o sexo do paciente!");
+        return;
+    }
+
+    // Validação da data de nascimento (formato dd/MM/yyyy)
+    try {
+        String dataTexto = jtfDataNascimento.getText();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false); 
+        sdf.parse(dataTexto);
+    } catch (ParseException e) {
+        JOptionPane.showMessageDialog(this, "Data de nascimento inválida!");
+        return;
+    }
+
+    boolean sucesso = pacienteController.create(
+        jtfTelefone.getText(),
+        jtfDataNascimento.getText(),
+        txtAlergias.getText(),
+        sexo,
+        jftCPF.getText(),
+        txtNome.getText()
+    );
+
+    if (sucesso) {
+        getListaPacientes();
         limpaCampos();
         JOptionPane.showMessageDialog(this, "Paciente salvo com sucesso!");
-        }else{
-            JOptionPane.showMessageDialog(this, "Nao foi possivel salvar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Não foi possível salvar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed

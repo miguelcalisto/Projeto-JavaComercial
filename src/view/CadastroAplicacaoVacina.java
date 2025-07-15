@@ -137,6 +137,11 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
 
         jlLocalAplic.setText("Local de Aplicação:");
 
+        txtLocalAplic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLocalAplicActionPerformed(evt);
+            }
+        });
         txtLocalAplic.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtLocalAplicKeyTyped(evt);
@@ -150,6 +155,11 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jtfData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfDataActionPerformed(evt);
+            }
+        });
 
         cmbPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,7 +279,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,11 +293,8 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(btnImprimir)
                         .addGap(43, 43, 43)
-                        .addComponent(jButtonSair)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelAplicacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonSair))
+                    .addComponent(jLabelAplicacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -459,6 +466,15 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         JasperViewer view = new JasperViewer(jasperPrint, false);
         view.setVisible(true);      
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void jtfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDataActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jtfDataActionPerformed
+
+    private void txtLocalAplicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocalAplicActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLocalAplicActionPerformed
 
         public static void main(String args[]) {
     /* Set the Nimbus look and feel */
