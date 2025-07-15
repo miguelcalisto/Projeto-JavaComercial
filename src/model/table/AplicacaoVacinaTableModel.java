@@ -55,13 +55,7 @@ public class AplicacaoVacinaTableModel extends AbstractTableModel {
     public String getColumnName(int column){
         return colunas[column];
     }
-    
-//    public AplicacaoVacina getAplicacaoVacina(int linha){
-//        if (linha >= listaAplicacaoVacina.size()){
-//            return null;
-//        }
-//        return listaAplicacaoVacina.get(linha);
-//    }
+ 
     public AplicacaoVacina getAplicacaoVacina(int linha){
     if (linha < 0 || linha >= listaAplicacaoVacina.size()) {
         return null;

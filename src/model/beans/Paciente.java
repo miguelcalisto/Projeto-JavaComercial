@@ -68,30 +68,12 @@ public class Paciente {
         this.nome = nome;
     }
     
-    
-//    @Override
-//public boolean equals(Object obj) {
-//    if (this == obj) return true;
-//    if (obj == null || getClass() != obj.getClass()) return false;
-//    Paciente other = (Paciente) obj;
-//    return this.id == other.id;
-//}
-//@Override
-//public int hashCode() {
-//    return Integer.hashCode(id);
-//}
-//
-//    
-//    @Override
-//public String toString() {
-//    return nome; // ou getNome(), se preferir
-//}
-    
+
     
     
 @Override
 public String toString() {
-    return nome; // usado no JComboBox
+    return nome;
 }
 
 @Override

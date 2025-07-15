@@ -43,7 +43,7 @@ public class PacienteController {
         paciente.setSexo(sexo);
         paciente.setCpf(cpf);
         paciente.setNome(nome);
-            paciente.setTelefone(telefone); // 
+            paciente.setTelefone(telefone); 
 
         
         PacienteDAO pacienteDAO = new PacienteDAO();

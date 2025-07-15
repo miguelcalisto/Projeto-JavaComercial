@@ -21,7 +21,8 @@ public class PacienteTableModel extends AbstractTableModel {
     
     @Override
     public int getRowCount(){
-        return listaPacientes.size();
+        return listaPacientes.size();   
+
     }
     
     @Override

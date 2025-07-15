@@ -143,7 +143,7 @@ public class PacienteDAO {
         }
     }
     public boolean delete(Paciente paciente) {
-    Connection con = Conexao.getConnection(); // Adicione isso se estiver faltando
+    Connection con = Conexao.getConnection(); 
     PreparedStatement stmt = null;
 
     try {
@@ -159,33 +159,3 @@ public class PacienteDAO {
     }
     }}
     
-//    public boolean delete(Paciente paciente){
-//        PreparedStatement stmt = null;
-//        try{
-//            stmt = con.prepareStatement("DELETE FROM paciente WHERE id = ?");
-//            stmt.setInt(1, paciente.getId());
-//            stmt.executeUpdate();
-//            return true;
-//        } catch(SQLException ex){
-//            System.err.println("Erro ao excluir " + ex);
-//            return false;
-//        } finally{
-//            Conexao.closeConnection(con, stmt);
-//        }
-//    }
-
-
-//PreparedStatement stmt = null;
-//    
-//    try{
-//        stmt = con.prepareStatement("DELETE FROM aplicacao_vacina WHERE id = ?");
-//        stmt.setInt(1, paciente.getId());
-//        stmt.executeUpdate();
-//        return true;
-//    } catch(SQLException ex){
-//        System.err.println("Erro: " + ex);
-//        return false;
-//    } finally{
-//        Conexao.closeConnection(con, stmt);
-//    
-//}}}

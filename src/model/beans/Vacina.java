@@ -40,7 +40,7 @@ public class Vacina {
     public void setDosesNecessarias(int dosesNecessarias) {
         this.dosesNecessarias = dosesNecessarias;
     }
-    // ... seus getters e setters
+   
 
 @Override
 public boolean equals(Object obj) {
