@@ -114,7 +114,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnExcluir" min="-2" pref="122" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnAplicacoes" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnImprimir" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -164,7 +164,7 @@
                       <Component id="btnAtualizar" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="btnExcluir" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="btnCancelar" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="btnAplicacoes" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Component id="btnImprimir" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
@@ -375,12 +375,12 @@
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscaKeyTyped"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnAplicacoes">
+        <Component class="javax.swing.JButton" name="btnImprimir">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Aplica&#xe7;&#xf5;es"/>
+            <Property name="text" type="java.lang.String" value="imprimir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAplicacoesActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImprimirActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -89,7 +89,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jcbBusca = new javax.swing.JComboBox<>();
         txtBusca = new javax.swing.JTextField();
-        btnAplicacoes = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -201,10 +201,10 @@ public class CadastroPaciente extends javax.swing.JFrame {
             }
         });
 
-        btnAplicacoes.setText("Aplicações");
-        btnAplicacoes.addActionListener(new java.awt.event.ActionListener() {
+        btnImprimir.setText("imprimir");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAplicacoesActionPerformed(evt);
+                btnImprimirActionPerformed(evt);
             }
         });
 
@@ -260,7 +260,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnAplicacoes)))))
+                                .addComponent(btnImprimir)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -299,7 +299,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
                     .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAplicacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(26, Short.MAX_VALUE))
@@ -495,7 +495,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_txtNomeKeyTyped
 
-    private void btnAplicacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicacoesActionPerformed
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
 //        int linhaSelecionada = jTablePacientes.getSelectedRow();
 //        
 //        if (linhaSelecionada != -1){
@@ -506,7 +506,9 @@ public class CadastroPaciente extends javax.swing.JFrame {
 //        }else{
 //            JOptionPane.showMessageDialog(this, "Selecione um paciente primeiro");
 //        }
-    }//GEN-LAST:event_btnAplicacoesActionPerformed
+
+
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -575,11 +577,11 @@ public class CadastroPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAplicacoes;
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.ButtonGroup buttonGroupSexo;
     private javax.swing.JLabel jLabelCadastro;
     private javax.swing.JPanel jPanel1;
