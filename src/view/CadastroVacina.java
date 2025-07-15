@@ -356,8 +356,10 @@ public class CadastroVacina extends javax.swing.JFrame {
 
     private void txtBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyTyped
         String chave = txtBusca.getText(); 
+        //busca a cada cartere em tempo real
         if (chave.equals("")){
             chave = String.valueOf(evt.getKeyChar());
+            
         }else if (evt.getKeyChar() != '\b'){
             chave = chave + evt.getKeyChar();
         }
