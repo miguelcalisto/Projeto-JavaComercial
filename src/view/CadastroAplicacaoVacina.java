@@ -1,15 +1,21 @@
 package view;
 
+import connection.Conexao;
 import controller.AplicacaoVacinaController;
 import controller.PacienteController;
 import model.beans.Paciente;
 import controller.ProfissionalDeSaudeController;
 import controller.VacinaController;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import model.beans.AplicacaoVacina;
 import model.beans.ProfissionalDeSaude;
 import model.beans.Vacina;
 import model.table.AplicacaoVacinaTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 //branch exame
 public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     
@@ -100,6 +106,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jButtonSair = new javax.swing.JButton();
         cmbPacientes = new javax.swing.JComboBox();
+        btnImprimir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbTabela = new javax.swing.JTable();
         jLabelAplicacoes = new javax.swing.JLabel();
@@ -182,6 +189,13 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
             }
         });
 
+        btnImprimir.setText("imprimir");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -199,13 +213,16 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmbProfissional, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cmbVacina, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cmbPacientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtLocalAplic, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnImprimir)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtLocalAplic, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelData)))
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabelData)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtfData, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
-                            .addComponent(cmbPacientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jtfData, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(btnSalvar)
@@ -243,7 +260,8 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
                     .addComponent(btnSalvar)
                     .addComponent(btnExcluir)
                     .addComponent(btnCancelar)
-                    .addComponent(jButtonSair))
+                    .addComponent(jButtonSair)
+                    .addComponent(btnImprimir))
                 .addGap(41, 41, 41))
         );
 
@@ -479,6 +497,23 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbVacinaActionPerformed
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+        Connection con = Conexao.getConnection();
+        
+        String src = "src/reports/aplicacao.jasper";
+        
+        JasperPrint jasperPrint = null;
+        
+        try{
+            jasperPrint = JasperFillManager.fillReport(src, null, con);
+        }catch(JRException ex){
+            System.out.println("Erro ao gerar relatorio de vacinas do paciente: " + ex);
+        }
+        JasperViewer view = new JasperViewer(jasperPrint, false);
+        view.setVisible(true);      
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
         public static void main(String args[]) {
     /* Set the Nimbus look and feel */
     //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -523,6 +558,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cmbPacientes;
     private javax.swing.JComboBox cmbProfissional;
