@@ -1,11 +1,17 @@
 package view;
 
+import connection.Conexao;
 import controller.PacienteController;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import model.beans.Paciente;
 import model.beans.Paciente;
 import model.table.PacienteTableModel;
 import model.table.PacienteTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class CadastroPaciente extends javax.swing.JFrame {
 
@@ -39,7 +45,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         jtfDataNascimento.setText(paciente.getDataNascimento());
         txtAlergias.setText(paciente.getAlergias());
         jftCPF.setText(paciente.getCpf());
-        buttonGroupSexo.clearSelection();//?
+        buttonGroupSexo.clearSelection();
         btnCadastrar.setEnabled(false);
         btnCadastrar.setEnabled(false);
         btnExcluir.setEnabled(true);
@@ -335,7 +341,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Prencha todos os campos obrigatórios");
                 return;
         }
-        //define variavel binaria sexo
         String sexo = "";
         if (jrMasculino.isSelected())
             sexo = "Masculino";
@@ -343,13 +348,12 @@ public class CadastroPaciente extends javax.swing.JFrame {
             sexo = "Feminino";
         else
             JOptionPane.showMessageDialog(this, "Selecione o sexo do paciente!");
-        //regex data de nascimento
+        //solucao probelma datas 
         String dataRegex = "^(0[1-9]|[12][0-9]||3[01]/(0[1-9]|1[0-2]/\\d{4}))$";
         if (jtfDataNascimento.getText().matches(dataRegex)){
             JOptionPane.showMessageDialog(this, "Data Invalida!");
             return;
         }
-        //executa botao cadastar
         if (pacienteController.create(jtfTelefone.getText(),
             jtfDataNascimento.getText(),
             txtAlergias.getText(),
@@ -372,13 +376,13 @@ public class CadastroPaciente extends javax.swing.JFrame {
         sexo = "Feminino";
     else {
         JOptionPane.showMessageDialog(this, "Selecione o sexo do paciente!");
-        return; // impedir execução se sexo não foi selecionado
+        return; 
     }
 
     boolean sucesso = pacienteController.update(
         idPaciente,
         jtfTelefone.getText(),
-        jtfDataNascimento.getText(),  // ⚠️ Altere conforme o nome real do campo
+        jtfDataNascimento.getText(), 
         txtAlergias.getText(),
         sexo,
         jftCPF.getText(),
@@ -395,21 +399,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
     limpaCampos();
 
         
-        /*if(jTablePacientes.getSelectedRow() != -1){
-            if(pacienteController.update((int) jTablePacientes.getValueAt(jTablePacientes.getSelectedRow(), 0),
-                                         jFormattedTextFieldTelefone.getText(),
-                                         jFormattedTextFieldDataNascimento.getText(),
-                                         jTextFieldAlergias.getText(),
-                                         sexo,
-                                         jFormattedTextFieldCpf.getText(),
-                                         jTextFieldNome.getText())){
-                this.getListaPaciente();
-                limpaCampos();
-                JOptionPane.showMessageDialog(this, "Paciente atualizado com sucesso!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Não foi possível atualizar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }*/
+  
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -421,17 +411,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         this.getListaPacientes();
         limpaCampos();
         
-        /*if(jTablePacientes.getSelectedRow() != -1){
-            if(pacientecontroller.delete((int) jTablePacientes.getValueAt(jTablePacientes.getSelectedRow(), 0))){
-                getListaPaciente();
-                limpaCampos();
-                JOptionPane.showMessageDialog(this, "Paciente deletado com sucesso!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Não foi possível deletar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione um paciente para excluir");
-        }*/
+ 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -469,7 +449,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jTablePacientesMouseClicked
 
     private void txtBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyTyped
-        String chave = txtBusca.getText(); //CORRIGIR!!
+        String chave = txtBusca.getText(); 
         if (chave.equals("")){
             chave = String.valueOf(evt.getKeyChar());
         }else if (evt.getKeyChar() != '\b'){
@@ -496,17 +476,19 @@ public class CadastroPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeKeyTyped
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-//        int linhaSelecionada = jTablePacientes.getSelectedRow();
-//        
-//        if (linhaSelecionada != -1){
-//            Paciente pacienteSelecionado = tableModel.getPaciente(linhaSelecionada);
-//            
-//            AplicacaoVacinaView aplicacaoView = new AplicacaoVacinaView(pacienteSelecionado);
-//            aplicacaoView.setVisible(true);
-//        }else{
-//            JOptionPane.showMessageDialog(this, "Selecione um paciente primeiro");
-//        }
-
+         Connection con = Conexao.getConnection();
+        
+        String src = "src/reports/Paciente.jasper";
+        
+        JasperPrint jasperPrint = null;
+        
+        try{
+            jasperPrint = JasperFillManager.fillReport(src, null, con);
+        }catch(JRException ex){
+            System.out.println("Erro ao gerar relatorio de pacientes: " + ex);
+        }
+        JasperViewer view = new JasperViewer(jasperPrint, false);
+        view.setVisible(true);
 
     }//GEN-LAST:event_btnImprimirActionPerformed
 
@@ -536,37 +518,8 @@ public class CadastroPaciente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CadastroPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+      
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

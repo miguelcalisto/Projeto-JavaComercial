@@ -32,9 +32,9 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
 
     getListaProfissionais();
     getListaVacinas();
-    getListaPacientes(); // ← Popula o cmbPacientes antes de selecionar
+    getListaPacientes(); 
 
-    cmbPacientes.setSelectedItem(paciente); // ← Agora sim
+    cmbPacientes.setSelectedItem(paciente); 
 
     getAplicacaoVacina();
         
@@ -79,14 +79,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     tbTabela.setModel(tableModelAplicacaoVacina);
     limpaCampos();
 }
-//    private void getAplicacaoVacina(){
-//        tableModelAplicacaoVacina = new AplicacaoVacinaTableModel(aplicacaoVacinaController.getAplicacaoVacina(this.paciente.getId()));
-//        
-//        tbTabela.setModel(tableModelAplicacaoVacina);
-//        
-//        limpaCampos();
-//    }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -321,51 +314,8 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-//        ProfissionalDeSaude profissional = (ProfissionalDeSaude) cmbProfissional.getSelectedItem();
-//        Vacina vacina = (Vacina) cmbVacina.getSelectedItem();
-//        aplicacaoVacinaController.create(this.paciente, profissional, vacina, jtfData.getText(), txtLocalAplic.getText());
-//        this.getAplicacaoVacina();
-
-//   Paciente pacienteSelecionado = (Paciente) cmbPacientes.getSelectedItem();
-//    ProfissionalDeSaude profissional = (ProfissionalDeSaude) cmbProfissional.getSelectedItem();
-//    Vacina vacina = (Vacina) cmbVacina.getSelectedItem();
-//
-//    aplicacaoVacinaController.create(pacienteSelecionado, profissional, vacina, jtfData.getText(), txtLocalAplic.getText());
-//    
-//    this.paciente = pacienteSelecionado; // Atualiza o atributo da classe, se necessário
-//    this.getAplicacaoVacina();
 
 
-//Paciente pacienteSelecionado = (Paciente) cmbPacientes.getSelectedItem();
-//Paciente pacienteParaAplicacao = new Paciente();
-//pacienteParaAplicacao.setId(pacienteSelecionado.getId());
-//pacienteParaAplicacao.setNome(pacienteSelecionado.getNome());
-//pacienteParaAplicacao.setCpf(pacienteSelecionado.getCpf());
-//pacienteParaAplicacao.setSexo(pacienteSelecionado.getSexo());
-//pacienteParaAplicacao.setTelefone(pacienteSelecionado.getTelefone());
-//pacienteParaAplicacao.setDataNascimento(pacienteSelecionado.getDataNascimento());
-//pacienteParaAplicacao.setAlergias(pacienteSelecionado.getAlergias());
-//
-//ProfissionalDeSaude profSelecionado = (ProfissionalDeSaude) cmbProfissional.getSelectedItem();
-//ProfissionalDeSaude profissionalParaAplicacao = new ProfissionalDeSaude();
-//profissionalParaAplicacao.setId(profSelecionado.getId());
-//profissionalParaAplicacao.setNome(profSelecionado.getNome());
-//profissionalParaAplicacao.setCpf(profSelecionado.getCpf());
-//profissionalParaAplicacao.setRegistroProfissional(profSelecionado.getRegistroProfissional());
-//
-//Vacina vacinaSelecionada = (Vacina) cmbVacina.getSelectedItem();
-//Vacina vacinaParaAplicacao = new Vacina();
-//vacinaParaAplicacao.setId(vacinaSelecionada.getId());
-//vacinaParaAplicacao.setNome(vacinaSelecionada.getNome());
-//vacinaParaAplicacao.setFabricante(vacinaSelecionada.getFabricante());
-//vacinaParaAplicacao.setDosesNecessarias(vacinaSelecionada.getDosesNecessarias());
-//
-//aplicacaoVacinaController.create(pacienteParaAplicacao, profissionalParaAplicacao, vacinaParaAplicacao, jtfData.getText(), txtLocalAplic.getText());
-//
-////this.paciente = pacienteParaAplicacao;
-//this.getAplicacaoVacina();
-
- // Obter o paciente selecionado do ComboBox e criar uma nova instância
     Paciente pacienteSelecionado = (Paciente) cmbPacientes.getSelectedItem();
     Paciente pacienteParaAplicacao = new Paciente();
     pacienteParaAplicacao.setId(pacienteSelecionado.getId());
@@ -392,7 +342,6 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     vacinaParaAplicacao.setFabricante(vacinaSelecionada.getFabricante());
     vacinaParaAplicacao.setDosesNecessarias(vacinaSelecionada.getDosesNecessarias());
 
-    // Chamar o controller para salvar
     boolean sucesso = aplicacaoVacinaController.create(
         pacienteParaAplicacao,
         profissionalParaAplicacao,
@@ -401,10 +350,9 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         txtLocalAplic.getText()
     );
 
-    // Se salvou com sucesso, atualizar a tabela
     if (sucesso) {
-        this.paciente = pacienteParaAplicacao; // se necessário manter o paciente atual na tela
-        this.getAplicacaoVacina(); // atualiza tabela com novos dados
+        this.paciente = pacienteParaAplicacao; 
+        this.getAplicacaoVacina(); 
         JOptionPane.showMessageDialog(this, "Aplicação registrada com sucesso!");
     } else {
         JOptionPane.showMessageDialog(this, "Erro ao registrar aplicação.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -413,14 +361,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-//        ProfissionalDeSaude profissional = (ProfissionalDeSaude) cmbProfissional.getSelectedItem();
-//        Vacina vacina = (Vacina) cmbVacina.getSelectedItem();
-//        if (aplicacaoVacinaController.delete(vacina.getId(), profissional.getId(), paciente.getId())){
-//            JOptionPane.showMessageDialog(this, "Aplicacao deletada com sucesso!");
-//        }else{
-//            JOptionPane.showMessageDialog(this, "Não foi possível deletar a aplicação", "Erro", JOptionPane.ERROR_MESSAGE);
-//        }
-//        this.getAplicacaoVacina();
+
     int linhaSelecionada = tbTabela.getSelectedRow();
     
     if (linhaSelecionada >= 0) {
@@ -433,7 +374,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Não foi possível deletar a aplicação", "Erro", JOptionPane.ERROR_MESSAGE);
             }
-            this.getAplicacaoVacina();  // Atualiza a lista/tabela
+            this.getAplicacaoVacina();  
         }
     } else {
         JOptionPane.showMessageDialog(this, "Selecione uma aplicação para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -488,7 +429,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         Paciente selecionado = (Paciente) cmbPacientes.getSelectedItem();
     if (selecionado != null) {
         this.paciente = selecionado;
-        getAplicacaoVacina(); // Atualiza a tabela para o paciente selecionado
+        getAplicacaoVacina(); 
     }
         
     }//GEN-LAST:event_cmbPacientesActionPerformed
@@ -508,7 +449,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         try{
             jasperPrint = JasperFillManager.fillReport(src, null, con);
         }catch(JRException ex){
-            System.out.println("Erro ao gerar relatorio de vacinas do paciente: " + ex);
+            System.out.println("Erro ao gerar relatorio de vacinas do aplicação Vacinas: " + ex);
         }
         JasperViewer view = new JasperViewer(jasperPrint, false);
         view.setVisible(true);      
@@ -541,9 +482,9 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
         public void run() {
-            // Aqui você pode trocar o "pacienteFake" por um paciente real quando for integrar
+            // probelma no main
             Paciente pacienteFake = new Paciente();
-            pacienteFake.setId(1); // ID válido do banco
+            pacienteFake.setId(1); 
             pacienteFake.setNome("Paciente de Teste");
             new CadastroAplicacaoVacina(pacienteFake).setVisible(true);
         }

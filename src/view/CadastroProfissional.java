@@ -268,9 +268,9 @@ public class CadastroProfissional extends javax.swing.JFrame {
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
        boolean sucesso = profissionalController.update(
         idProfissional,
-        jftCPF.getText(),        // cpf
-        txtRegistro.getText(),   // registro profissional
-        txtNome.getText()        // nome
+        jftCPF.getText(),        
+        txtRegistro.getText(),   
+        txtNome.getText()        
     );
 
     if (sucesso) {
@@ -292,17 +292,7 @@ public class CadastroProfissional extends javax.swing.JFrame {
         this.getListaProfissionais();
         limpaCampos();
         
-        /*if(jTableProfissionais.getSelectedRow() != -1){
-            if(profissionalController.delete((int) jTableProfissionais.getValueAt(jTableProfissionais.getSelectedRow(), 0))){
-                this.getListaProfissionais();
-                limpaCampos();
-                JOptionPane.showMessageDialog(this, "Profissional deletado com sucesso!");
-            }else{
-                JOptionPane.showMessageDialog(this, "Não foi possível excluir o profissional", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione um profissional para excluir");
-        }*/
+
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -333,7 +323,7 @@ public class CadastroProfissional extends javax.swing.JFrame {
     }//GEN-LAST:event_cbbBuscaActionPerformed
 
     private void txtBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyTyped
-        String chave = txtBusca.getText(); //CORRIGIR!!
+        String chave = txtBusca.getText(); 
         if (chave.equals("")){
             chave = String.valueOf(evt.getKeyChar());
         }else if (evt.getKeyChar() != '\b'){
@@ -393,21 +383,7 @@ public class CadastroProfissional extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CadastroProfissional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

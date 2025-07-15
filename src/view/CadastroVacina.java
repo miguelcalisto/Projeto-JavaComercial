@@ -321,7 +321,7 @@ public class CadastroVacina extends javax.swing.JFrame {
     }//GEN-LAST:event_tbTabelaMouseClicked
 
     private void txtBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyTyped
-        String chave = txtBusca.getText(); //CORRIGIR!!
+        String chave = txtBusca.getText(); 
         if (chave.equals("")){
             chave = String.valueOf(evt.getKeyChar());
         }else if (evt.getKeyChar() != '\b'){
@@ -401,9 +401,6 @@ public class CadastroVacina extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CadastroVacina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
