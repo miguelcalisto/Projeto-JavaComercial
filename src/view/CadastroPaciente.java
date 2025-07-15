@@ -100,7 +100,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(741, 900));
 
         jlNome.setText("Nome");

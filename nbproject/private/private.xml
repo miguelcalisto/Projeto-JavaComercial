@@ -22,9 +22,13 @@
             <file>file:/home/debian/principal/Projeto-JavaComercial/src/model/beans/ProfissionalDeSaude.java</file>
             <file>file:/home/debian/principal/Projeto-JavaComercial/src/controller/AplicacaoVacinaController.java</file>
             <file>file:/home/debian/principal/Projeto-JavaComercial/src/model/dao/VacinaDAO.java</file>
-            <file>file:/home/debian/principal/Projeto-JavaComercial/mascara</file>
             <file>file:/home/debian/principal/Projeto-JavaComercial/README.md</file>
             <file>file:/home/debian/principal/Projeto-JavaComercial/BANCODEDADOS.sql</file>
+            <file>file:/home/debian/principal/Projeto-JavaComercial/src/model/table/ProfissionalDeSaudeTableModel.java</file>
+            <file>file:/home/debian/principal/Projeto-JavaComercial/src/model/table/VacinaTableModel.java</file>
+            <file>file:/home/debian/principal/Projeto-JavaComercial/src/connection/Conexao.java</file>
+            <file>file:/home/debian/principal/Projeto-JavaComercial/src/connection/TesteConexao.java</file>
+            <file>file:/home/debian/principal/Projeto-JavaComercial/exame.sql</file>
         </group>
     </open-files>
 </project-private>
