@@ -1,6 +1,9 @@
 
 package model.beans;
-
+/**
+ * princiapl continue aqui
+ * @author debian
+ */
 public class Paciente {
     int id;
     String telefone;

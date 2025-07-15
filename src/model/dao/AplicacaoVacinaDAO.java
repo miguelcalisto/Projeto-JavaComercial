@@ -1,5 +1,8 @@
 package model.dao;
-
+/**
+ * princiapl continue aqui
+ * @author debian
+ */
 import connection.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

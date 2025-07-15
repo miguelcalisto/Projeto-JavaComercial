@@ -1,5 +1,8 @@
 package model.beans;
-
+/**
+ * princiapl continue aqui
+ * @author debian
+ */
 public class ProfissionalDeSaude {
     int id;
     String registroProfissional;

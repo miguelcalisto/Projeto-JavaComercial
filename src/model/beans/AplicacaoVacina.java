@@ -1,5 +1,8 @@
 package model.beans;
-
+/**
+ * princiapl continue aqui
+ * @author debian
+ */
 import model.beans.ProfissionalDeSaude;
 
 public class AplicacaoVacina {

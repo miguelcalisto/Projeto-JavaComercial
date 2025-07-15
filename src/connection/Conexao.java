@@ -30,7 +30,7 @@ public class Conexao {
     }
     
     
-    
+    //branch exame
     public static void closeConnection(Connection con){
         
         if (con != null) {
