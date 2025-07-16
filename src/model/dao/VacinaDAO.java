@@ -53,7 +53,7 @@ public class VacinaDAO {
                 ListaVacinas.add(vacina);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler as Vacinas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao çistar as Vacinas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
@@ -78,7 +78,7 @@ public class VacinaDAO {
                 listaVacinas.add(vacina);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler as Vacinas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao listar as Vacinas pelo nome: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
@@ -103,7 +103,7 @@ public class VacinaDAO {
                 listaVacinas.add(vacina);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler as Vacinas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao listar as Vacinas-fabricante: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
@@ -128,7 +128,7 @@ public class VacinaDAO {
                 listaVacinas.add(vacina);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler as Vacinas: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao listar as Vacinas-doses: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
@@ -147,7 +147,7 @@ public class VacinaDAO {
             stmt.executeUpdate();
             return true;
         } catch (SQLException ex) {
-            System.err.println("Erro ao atualizar: " + ex);
+            System.err.println("erro a atualizar: " + ex);
             return false;
         } finally {
             Conexao.closeConnection(con, stmt);

@@ -364,18 +364,18 @@ public class CadastroPaciente extends javax.swing.JFrame {
         jtfTelefone.getText().isEmpty() ||
         jtfDataNascimento.getText().isEmpty()) {
 
-        JOptionPane.showMessageDialog(this, "Preencha todos os campos obrigatórios.");
+        JOptionPane.showMessageDialog(this, "Preencha todos os campos");
         return;
     }
 
-    // Validação do sexo
+    // Validaçãoo do sexo
     String sexo = "";
     if (jrMasculino.isSelected()) {
         sexo = "Masculino";
     } else if (jrFeminino.isSelected()) {
         sexo = "Feminino";
     } else {
-        JOptionPane.showMessageDialog(this, "Selecione o sexo do paciente!");
+        JOptionPane.showMessageDialog(this, "Selecione o sexo do paciente");
         return;
     }
 
@@ -386,7 +386,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         sdf.setLenient(false); 
         sdf.parse(dataTexto);
     } catch (ParseException e) {
-        JOptionPane.showMessageDialog(this, "Data de nascimento inválida!");
+        JOptionPane.showMessageDialog(this, "Data de nascimento no formato inválido");
         return;
     }
 
@@ -402,9 +402,9 @@ public class CadastroPaciente extends javax.swing.JFrame {
     if (sucesso) {
         getListaPacientes();
         limpaCampos();
-        JOptionPane.showMessageDialog(this, "Paciente salvo com sucesso!");
+        JOptionPane.showMessageDialog(this, "Paciente salvo");
     } else {
-        JOptionPane.showMessageDialog(this, "Não foi possível salvar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "erro ao salvar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -415,7 +415,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
     else if (jrFeminino.isSelected())
         sexo = "Feminino";
     else {
-        JOptionPane.showMessageDialog(this, "Selecione o sexo do paciente!");
+        JOptionPane.showMessageDialog(this, "Selecione o sexo do paciente");
         return; 
     }
 
@@ -430,9 +430,9 @@ public class CadastroPaciente extends javax.swing.JFrame {
     );
 
     if (sucesso) {
-        JOptionPane.showMessageDialog(this, "Paciente atualizado com sucesso!");
+        JOptionPane.showMessageDialog(this, "Paciente atualizado");
     } else {
-        JOptionPane.showMessageDialog(this, "Não foi possível atualizar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "erro atualizar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
     this.getListaPacientes();
@@ -444,9 +444,9 @@ public class CadastroPaciente extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         if (pacienteController.delete(idPaciente)){
-            JOptionPane.showMessageDialog(this, "Paciente deletado com sucesso!");
+            JOptionPane.showMessageDialog(this, "Paciente deletadO");
         }else {
-            JOptionPane.showMessageDialog(this, "Não foi possível deletar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "erro ao  deletar o paciente!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         this.getListaPacientes();
         limpaCampos();

@@ -14,7 +14,7 @@ public class TesteConexao {
     public static void main(String[] args) {
         try {
             Connection conexao = Conexao.getConnection();
-            System.out.println("Conexão bem-sucedida!");
+            System.out.println("Conexão bem sucedida!");
             conexao.close();
         } catch (Exception e) {
             System.out.println("Erro na conexão: " + e.getMessage());

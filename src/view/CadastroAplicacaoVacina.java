@@ -108,7 +108,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jButtonSair = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -264,10 +264,10 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
             }
         });
 
-        jButtonSair.setText("Sair");
-        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSairActionPerformed(evt);
+                btnSairActionPerformed(evt);
             }
         });
 
@@ -297,7 +297,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(btnImprimir)
                         .addGap(43, 43, 43)
-                        .addComponent(jButtonSair))
+                        .addComponent(btnSair))
                     .addComponent(jLabelAplicacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -313,7 +313,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
                     .addComponent(btnSalvar)
                     .addComponent(btnExcluir)
                     .addComponent(btnCancelar)
-                    .addComponent(jButtonSair)
+                    .addComponent(btnSair)
                     .addComponent(btnImprimir))
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,7 +369,7 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     if (sucesso) {
         this.paciente = pacienteParaAplicacao; 
         this.getAplicacaoVacina(); 
-        JOptionPane.showMessageDialog(this, "Aplicação registrada com sucesso!");
+        JOptionPane.showMessageDialog(this, "Aplicação registrada");
     } else {
         JOptionPane.showMessageDialog(this, "Erro ao registrar aplicação.", "Erro", JOptionPane.ERROR_MESSAGE);
     }
@@ -386,14 +386,14 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         if (aplicacao != null) {
             int idAplicacao = aplicacao.getId();
             if (aplicacaoVacinaController.delete(idAplicacao)) {
-                JOptionPane.showMessageDialog(this, "Aplicação deletada com sucesso!");
+                JOptionPane.showMessageDialog(this, "Aplicação deletada");
             } else {
-                JOptionPane.showMessageDialog(this, "Não foi possível deletar a aplicação", "Erro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "erro deletar a aplicação", "Erro", JOptionPane.ERROR_MESSAGE);
             }
             this.getAplicacaoVacina();  
         }
     } else {
-        JOptionPane.showMessageDialog(this, "Selecione uma aplicação para excluir", "Aviso", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Selecione uma aplicação para excluir", "Atenção", JOptionPane.WARNING_MESSAGE);
     }
 
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -405,11 +405,11 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
         limpaCampos();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.dispose();
         InterfacePrincipal main = new InterfacePrincipal();
         main.setVisible(true);
-    }//GEN-LAST:event_jButtonSairActionPerformed
+    }//GEN-LAST:event_btnSairActionPerformed
 
     private void txtLocalAplicKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLocalAplicKeyTyped
         btnSalvar.setEnabled(true);
@@ -541,11 +541,11 @@ public class CadastroAplicacaoVacina extends javax.swing.JFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox cmbPacientes;
     private javax.swing.JComboBox cmbProfissional;
     private javax.swing.JComboBox cmbVacina;
-    private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabelAplicacoes;
     private javax.swing.JLabel jLabelData;
     private javax.swing.JPanel jPanel1;

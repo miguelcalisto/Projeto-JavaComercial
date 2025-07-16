@@ -293,7 +293,7 @@ public class CadastroProfissional extends javax.swing.JFrame {
         if(txtNome.getText().isEmpty() ||
            jftCPF.getText().isEmpty() ||
            txtRegistro.getText().isEmpty()){
-        JOptionPane.showMessageDialog(this, "Preencha os campos obrigatórios!");
+        JOptionPane.showMessageDialog(this, "Preencha os campos ");
         return;
         }
         if(profissionalController.create(txtNome.getText(),
@@ -316,9 +316,9 @@ public class CadastroProfissional extends javax.swing.JFrame {
     );
 
     if (sucesso) {
-        JOptionPane.showMessageDialog(this, "Profissional atualizado com sucesso!");
+        JOptionPane.showMessageDialog(this, "Profissional atualizado ");
     } else {
-        JOptionPane.showMessageDialog(this, "Não foi possível atualizar o profissional!", "Erro", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "erro ao  atualizar o profissional!", "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
     this.getListaProfissionais();
@@ -327,9 +327,9 @@ public class CadastroProfissional extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         if (profissionalController.delete(idProfissional)){
-            JOptionPane.showMessageDialog(this, "Profissional deletado com sucesso!");
+            JOptionPane.showMessageDialog(this, "Profissional deletado ");
         }else {
-            JOptionPane.showMessageDialog(this, "Não foi possível deletar o profissional!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "erro ao  deletar o profissional!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         this.getListaProfissionais();
         limpaCampos();

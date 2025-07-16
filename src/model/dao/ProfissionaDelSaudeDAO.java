@@ -30,7 +30,7 @@ public class ProfissionaDelSaudeDAO {
             stmt.executeUpdate();
             return true;
         }catch(SQLException ex){
-            System.err.println("Erro ao salvar: " + ex);
+            System.err.println("erro ao salvar: " + ex);
             return false;
         }finally{
             Conexao.closeConnection(con, stmt);
@@ -53,7 +53,7 @@ public class ProfissionaDelSaudeDAO {
                 listaProfissionalSaude.add(profissionalsaude);
             }
         } catch(SQLException ex){
-            System.err.println("Erro ao ler: " + ex);
+            System.err.println("Erro ao listar: " + ex);
         } finally{
             Conexao.closeConnection(con, stmt, rs);
         }
@@ -78,7 +78,7 @@ public class ProfissionaDelSaudeDAO {
                 listaProfissionalSaude.add(profissionalsaude);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler os Profissionais: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "erro ao listar os Profissionais por nome: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
@@ -103,7 +103,7 @@ public class ProfissionaDelSaudeDAO {
                 listaProfissionalSaude.add(profissionalsaude);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler os profissionais: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao listar os profissionais por cpf: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
@@ -161,7 +161,7 @@ public class ProfissionaDelSaudeDAO {
             stmt.executeUpdate();
             return true;
         } catch(SQLException ex){
-            System.err.println("Erro ao excluir: " + ex);
+            System.err.println("Erro ao dleytar: " + ex);
             return false;
         } finally{
             Conexao.closeConnection(con, stmt);

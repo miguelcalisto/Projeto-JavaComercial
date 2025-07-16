@@ -285,9 +285,9 @@ public class CadastroVacina extends javax.swing.JFrame {
 
     private void btnCdastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCdastrarActionPerformed
         if (vacinaController.create(txtNome.getText(), txtFabricante.getText(), Integer.parseInt(txtDosesNec.getText()))){
-            JOptionPane.showMessageDialog(this, "Vacina salva com sucesso!");
+            JOptionPane.showMessageDialog(this, "Vacina salva");
         }else {
-            JOptionPane.showMessageDialog(this, "Não foi possível salvar a vacina", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "erro ao salvar a vacina", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         this.getListaVacinas();
         limpaCampos();
@@ -295,9 +295,9 @@ public class CadastroVacina extends javax.swing.JFrame {
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
         if (vacinaController.update(idVacina, txtNome.getText(), txtFabricante.getText(), Integer.parseInt(txtDosesNec.getText()))){
-            JOptionPane.showMessageDialog(this, "Vacina atualizada com sucesso!");
+            JOptionPane.showMessageDialog(this, "Vacina atualizada");
         }else{
-            JOptionPane.showMessageDialog(this, "Não foi possível atualizar a vacina!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "erro  atualizar a vacina!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         this.getListaVacinas();
         limpaCampos();
@@ -323,9 +323,9 @@ public class CadastroVacina extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         if (vacinaController.delete(idVacina)){
-            JOptionPane.showMessageDialog(this, "Vacina deletada com sucesso!");
+            JOptionPane.showMessageDialog(this, "Vacina deletada");
         }else {
-            JOptionPane.showMessageDialog(this, "Não foi possível deletar a vacina!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "erro ao  deletar a vacina", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         this.getListaVacinas();
         limpaCampos();

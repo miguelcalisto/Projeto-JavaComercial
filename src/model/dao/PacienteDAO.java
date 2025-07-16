@@ -33,7 +33,10 @@ public class PacienteDAO {
             return true;
             
         } catch(SQLException ex){
-            System.err.println("Erro ao salvar: " + ex);
+            
+            
+            
+            System.err.println("erro ao salvar: " + ex);
             return false;
         } finally{
             Conexao.closeConnection(con, stmt);
@@ -87,7 +90,7 @@ public class PacienteDAO {
                 listaPacientes.add(paciente);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler os Pacientes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erro ao listar os Pacientes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
@@ -115,7 +118,7 @@ public class PacienteDAO {
                 listaPacientes.add(paciente);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler os Pacientes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "erro ao listar pacientes: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } finally {
             Conexao.closeConnection(con, stmt, rs);
         }
@@ -136,7 +139,7 @@ public class PacienteDAO {
             stmt.executeUpdate();
             return true;
         } catch(SQLException ex){
-            System.err.println("Erro ao atualizar: " + ex);
+            System.err.println("eerro ao atualizar: " + ex);
             return false;
         } finally{
             Conexao.closeConnection(con, stmt);
@@ -152,7 +155,7 @@ public class PacienteDAO {
         stmt.executeUpdate();
         return true;
     } catch (SQLException ex) {
-        System.err.println("Erro ao excluir paciente: " + ex);
+        System.err.println("erro ao excluir paciente: " + ex);
         return false;
     } finally {
         Conexao.closeConnection(con, stmt);
