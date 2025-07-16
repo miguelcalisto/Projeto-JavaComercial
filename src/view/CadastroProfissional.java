@@ -299,7 +299,7 @@ public class CadastroProfissional extends javax.swing.JFrame {
         if(profissionalController.create(txtNome.getText(),
                 jftCPF.getText(),
                 txtRegistro.getText())){
-            JOptionPane.showMessageDialog(this, "Profissional salvo com sucesso!");
+            JOptionPane.showMessageDialog(this, "Profissional salvo ");
         }else{
             JOptionPane.showMessageDialog(this, "Nao foi possivel salvar o profissional!", "Erro", JOptionPane.ERROR_MESSAGE);
         }
