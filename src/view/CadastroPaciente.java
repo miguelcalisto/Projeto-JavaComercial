@@ -137,6 +137,11 @@ public class CadastroPaciente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jtfDataNascimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfDataNascimentoActionPerformed(evt);
+            }
+        });
 
         try {
             jtfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)  ####-####")));
@@ -335,9 +340,9 @@ public class CadastroPaciente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelCadastro)
@@ -531,6 +536,10 @@ public class CadastroPaciente extends javax.swing.JFrame {
         view.setVisible(true);
 
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void jtfDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDataNascimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfDataNascimentoActionPerformed
 
     /**
      * @param args the command line arguments
